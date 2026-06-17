@@ -1,0 +1,64 @@
+import React from 'react';
+import { useState } from 'react';
+import Div from '../Div';
+
+export default function VideoModal({ videoSrc, bgUrl, variant }) {
+  const [iframeSrc, setIframeSrc] = useState('about:blank');
+  const [toggle, setToggle] = useState(false);
+  const handelClick = () => {
+    if (videoSrc.includes('youtube.com') || videoSrc.includes('youtu.be')) {
+      const video = videoSrc.includes('?v=') ? videoSrc.split('?v=')[1].trim() : videoSrc.split('/').pop().trim();
+      setIframeSrc(`https://www.youtube.com/embed/${video}`);
+    } else {
+      setIframeSrc(videoSrc);
+    }
+    setToggle(!toggle);
+  };
+  const handelClose = () => {
+    setIframeSrc('about:blank');
+    setToggle(!toggle);
+  };
+  return (
+    <>
+      <Div
+        className={`cs-video_block ${
+          variant ? variant : 'cs-style1'
+        } cs-video_open cs-bg`}
+        style={{ backgroundImage: `url(${bgUrl})` }}
+        onClick={handelClick}
+      >
+        <span className="cs-player_btn cs-accent_color">
+          <span />
+        </span>
+      </Div>
+      <Div className={toggle ? 'cs-video_popup active' : 'cs-video_popup'}>
+        <Div className="cs-video_popup_overlay" />
+        <Div className="cs-video_popup_content">
+          <Div className="cs-video_popup_layer" />
+          <Div className="cs-video_popup_container">
+            <Div className="cs-video_popup_align">
+              <Div className="embed-responsive embed-responsive-16by9">
+                {iframeSrc.endsWith('.mp4') || iframeSrc.includes('mp4') ? (
+                  <video
+                    className="embed-responsive-item"
+                    src={iframeSrc}
+                    controls
+                    autoPlay
+                    style={{ width: '100%', height: '100%', border: 'none', background: '#000' }}
+                  />
+                ) : (
+                  <iframe
+                    className="embed-responsive-item"
+                    src={iframeSrc}
+                    title="video modal"
+                  />
+                )}
+              </Div>
+            </Div>
+            <Div className="cs-video_popup_close" onClick={handelClose} />
+          </Div>
+        </Div>
+      </Div>
+    </>
+  );
+}
