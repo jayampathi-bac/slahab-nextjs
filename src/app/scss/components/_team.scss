@@ -21,7 +21,8 @@
     left: 0;
     top: 0;
     border-radius: inherit;
-    background: linear-gradient(360deg, #000000 0%, rgba(77, 77, 77, 0) 100%);
+    z-index: 2;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 50%);
   }
   .cs-member_social {
     svg {
@@ -32,6 +33,15 @@
   .cs-member_name {
     font-size: 22px;
     margin-bottom: 6px;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    a {
+      color: inherit;
+    }
+  }
+  .cs-member_designation {
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   }
   .cs-member_info {
     position: absolute;
@@ -50,10 +60,21 @@
     flex-direction: column;
     a {
       display: flex;
-      margin: 12px;
+      justify-content: center;
+      align-items: center;
+      width: 38px;
+      height: 38px;
+      background-color: #161616;
+      color: #ffffff !important;
+      border-radius: 50%;
+      margin: 8px;
       transform: scale(0) rotate(45deg);
       opacity: 0;
       transition: all 0.4s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      &:hover {
+        background-color: var(--accent);
+      }
     }
   }
   &:hover {

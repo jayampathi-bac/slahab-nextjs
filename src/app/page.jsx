@@ -157,7 +157,7 @@ const slahabTimeline = [
 // SLAHAB Leadership Team (Reverted to template's premium black & white placeholder photos)
 const slahabTeam = [
   {
-    memberImage: '/images/member_1.jpeg',
+    memberImage: '/images/slahab/board_member_1.png',
     memberName: 'Nayana Karunaratne',
     memberDesignation: 'Founder President & Trustee',
     memberSocial: {
@@ -168,7 +168,7 @@ const slahabTeam = [
     },
   },
   {
-    memberImage: '/images/member_2.jpeg',
+    memberImage: '/images/slahab/board_member_2.png',
     memberName: 'Ramzi Rahaman',
     memberDesignation: 'Past President & Trustee',
     memberSocial: {
@@ -179,7 +179,7 @@ const slahabTeam = [
     },
   },
   {
-    memberImage: '/images/member_3.jpeg',
+    memberImage: '/images/slahab/board_member_3.png',
     memberName: 'Mayuri Thilakawardana',
     memberDesignation: 'Past President & ICD President',
     memberSocial: {
@@ -190,7 +190,7 @@ const slahabTeam = [
     },
   },
   {
-    memberImage: '/images/member_4.jpeg',
+    memberImage: '/images/slahab/board_member_4.png',
     memberName: 'Kayalvili Jayapragash',
     memberDesignation: 'Current Joint President',
     memberSocial: {
@@ -201,7 +201,7 @@ const slahabTeam = [
     },
   },
   {
-    memberImage: '/images/member_2.jpeg',
+    memberImage: '/images/slahab/board_member_5.png',
     memberName: 'Theekshanee Kriyawasam',
     memberDesignation: 'Current Joint President',
     memberSocial: {
@@ -301,25 +301,28 @@ export default function Home() {
       {/* End FunFact Section */}
 
       {/* Start Service Section */}
-      <Spacing lg="150" md="80" />
-      <Div id="service">
-        <Div className="container">
-          <SectionHeading
-            title="Our Pillars of Excellence"
-            subtitle="What We Do"
-            btnText="See All Services"
-            btnLink="/service"
-            variant="cs-style1 text-center"
-          />
-          <Spacing lg="70" md="45" />
-          <ServiceList data={slahabPillars} />
+      <Div className="cs-light_mode">
+        <Spacing lg="70" md="35" />
+        <Div id="service">
+          <Div className="container">
+            <SectionHeading
+              title="Our Pillars of Excellence"
+              subtitle="What We Do"
+              btnText="See All Services"
+              btnLink="/service"
+              variant="cs-style1 text-center"
+            />
+            <Spacing lg="70" md="45" />
+            <ServiceList data={slahabPillars} />
+          </Div>
         </Div>
+        <Spacing lg="150" md="50" />
       </Div>
       {/* End Service Section */}
 
       {/* Start Portfolio Section */}
-      <Spacing lg="150" md="50" />
       <Div>
+        <Spacing lg="70" md="35" />
         <Div className="container">
           <SectionHeading
             title="Moments of Pride & Craftsmanship"
@@ -371,17 +374,19 @@ export default function Home() {
       {/* End Video Block Section */}
 
       {/* Start Team Section */}
-      <Spacing lg="145" md="80" />
-      <Div className="container">
-        <SectionHeading
-          title="Leadership & Trustees"
-          subtitle="Our Board"
-          variant="cs-style1"
-        />
-        <Spacing lg="85" md="45" />
-        <TeamSlider data={slahabTeam} />
+      <Div className="cs-light_mode">
+        <Spacing lg="70" md="35" />
+        <Div className="container">
+          <SectionHeading
+            title="Leadership & Trustees"
+            subtitle="Our Board"
+            variant="cs-style1"
+          />
+          <Spacing lg="85" md="45" />
+          <TeamSlider data={slahabTeam} />
+        </Div>
+        <Spacing lg="150" md="80" />
       </Div>
-      <Spacing lg="150" md="80" />
       {/* End Team Section */}
 
       {/* Start Testimonial Section */}
@@ -389,33 +394,35 @@ export default function Home() {
       {/* End Testimonial Section */}
 
       {/* Start Blog Section */}
-      <Spacing lg="150" md="80" />
-      <Div className="cs-shape_wrap_4">
-        <Div className="cs-shape_4"></Div>
-        <Div className="cs-shape_4"></Div>
-        <Div className="container">
-          <Div className="row">
-            <Div className="col-xl-4">
-              <SectionHeading
-                title="Latest Industry Publications"
-                subtitle="Our Blog"
-                btnText="View More Blog"
-                btnLink="/blog"
-              />
-              <Spacing lg="90" md="45" />
-            </Div>
-            <Div className="col-xl-7 offset-xl-1">
-              <Div className="cs-half_of_full_width">
-                <PostSlider data={slahabBlogs} />
+      <Div className="cs-light_mode">
+        <Spacing lg="70" md="35" />
+        <Div className="cs-shape_wrap_4">
+          <Div className="cs-shape_4"></Div>
+          <Div className="cs-shape_4"></Div>
+          <Div className="container">
+            <Div className="row">
+              <Div className="col-xl-4">
+                <SectionHeading
+                  title="Latest Industry Publications"
+                  subtitle="Our Blog"
+                  btnText="View More Blog"
+                  btnLink="/blog"
+                />
+                <Spacing lg="90" md="45" />
+              </Div>
+              <Div className="col-xl-7 offset-xl-1">
+                <Div className="cs-half_of_full_width">
+                  <PostSlider data={slahabBlogs} />
+                </Div>
               </Div>
             </Div>
           </Div>
         </Div>
+        <Spacing lg="125" md="70" />
       </Div>
       {/* End Blog Section */}
 
       {/* Start MovingText Section */}
-      <Spacing lg="125" md="70" />
       <MovingText text="OFFICIAL MEMBER OF OMC WORLD • ICD SRI LANKA • HAIRDRESSING & BEAUTY EXCELLENCE • ESTABLISHED 1996" />
       <Spacing lg="105" md="70" />
       {/* End MovingText Section */}

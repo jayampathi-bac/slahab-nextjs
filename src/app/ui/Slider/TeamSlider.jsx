@@ -93,7 +93,11 @@ export default function TeamSlider({ data = teamData }) {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 500,
+    speed: 700,
+    autoplay: true,
+    autoplaySpeed: 2500,
+    cssEase: 'ease-in-out',
+    pauseOnHover: true,
     slidesToShow: 4,
     slidesToScroll: 1,
     prevArrow: <SlickArrowLeft />,

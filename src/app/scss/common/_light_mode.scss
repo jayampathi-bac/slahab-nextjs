@@ -1,0 +1,193 @@
+/*--------------------------------------------------------------
+## Light Mode Utilities
+----------------------------------------------------------------*/
+.cs-light_mode {
+  background-color: #fcfcfc;
+  color: #161616;
+
+  /* Typography Overrides */
+  h1, h2, h3, h4, h5, h6, 
+  .cs-section_title, 
+  .cs-iconbox_title, 
+  .cs-post_title,
+  .cs-member_name,
+  .cs-accordian_title {
+    color: #161616 !important;
+  }
+
+  p, 
+  .cs-section_subtitle, 
+  .cs-iconbox_subtitle, 
+  .cs-ternary_color,
+  .cs-member_designation,
+  .cs-post_meta,
+  .cs-accordian_body {
+    color: #4a4a4a !important;
+  }
+
+  /* Buttons & Slider Arrows */
+  .slick-arrow {
+    border-color: #161616 !important;
+    color: #161616 !important;
+    svg {
+      color: #161616 !important;
+    }
+    &:hover {
+      background-color: #161616 !important;
+      color: #fff !important;
+      svg {
+        color: #fff !important;
+      }
+    }
+  }
+
+  .cs-text_btn {
+    color: #161616 !important;
+    &:hover {
+      color: var(--accent) !important;
+    }
+  }
+
+  /* Separators */
+  .cs-separator {
+    background-color: var(--accent) !important;
+  }
+
+  /* IconBox specific */
+  .cs-iconbox_icon {
+    color: #161616 !important;
+  }
+
+  /* Team Slider Cards - Premium 2026 Layout (Text Below Image) */
+  .cs-team.cs-style1 {
+    display: flex;
+    flex-direction: column;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding-bottom: 0 !important;
+
+    .cs-member_thumb {
+      border-radius: 15px;
+      overflow: hidden;
+      /* Add a subtle, premium shadow to the image only */
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+      transition: all 0.4s ease;
+      
+      img {
+        width: 100%;
+        aspect-ratio: 4/5;
+        object-fit: cover;
+        object-position: top;
+      }
+    }
+
+    /* Slight lift of the image on hover for a premium feel */
+    &:hover .cs-member_thumb {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    }
+
+    .cs-member_overlay {
+      display: none !important; /* No gradient needed anymore */
+    }
+
+    .cs-member_info {
+      position: relative !important;
+      width: 100%;
+      padding: 24px 10px 0 !important;
+      text-align: center;
+      background: transparent;
+    }
+
+    .cs-member_name, .cs-member_name a {
+      color: #161616 !important;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      transition: color 0.3s ease;
+      
+      &:hover {
+        color: var(--accent) !important;
+      }
+    }
+
+    .cs-member_designation {
+      color: #777 !important;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    /* Restore original social icon animations but make them dark for the white photo bg */
+    .cs-member_social {
+      a {
+        color: #161616 !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+        
+        svg {
+          color: inherit !important;
+        }
+
+        &:hover {
+          color: var(--accent) !important;
+        }
+      }
+    }
+  }
+
+  /* Post/Blog Slider Cards - Restored to Premium Dark Overlay */
+  .cs-post.cs-style1 {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+
+    .cs-post_info {
+      background: transparent !important;
+    }
+
+    .cs-post_overlay {
+      display: block !important;
+    }
+
+    .cs-posted_by {
+      color: rgba(255, 255, 255, 0.8) !important;
+    }
+
+    .cs-post_title {
+      a {
+        color: var(--accent) !important;
+        
+        &:hover {
+          color: #ffffff !important;
+        }
+      }
+    }
+  }
+
+  /* Fix for the background shapes/logos in Light Mode: Hide them for a clean look */
+  .cs-shape_wrap_4 .cs-shape_4 {
+    display: none !important;
+  }
+
+  /* Accordion specific */
+  .cs-accordian {
+    border-color: #eaeaea;
+    &.active {
+      border-color: var(--accent);
+    }
+    .cs-accordian_toggle {
+      color: #161616;
+    }
+  }
+
+  /* Wrapper Utilities */
+  &.cs-shape_wrap_2 {
+    .cs-shape_2 {
+      opacity: 0.1; /* Make shapes subtle in light mode */
+      filter: invert(1);
+    }
+  }
+}

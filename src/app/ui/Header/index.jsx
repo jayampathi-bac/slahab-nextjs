@@ -42,70 +42,34 @@ export default function Header({ variant }) {
                     className="cs-nav_list"
                     style={{ display: `${mobileToggle ? 'block' : 'none'}` }}
                   >
+
                     <li>
-                      <Link href="/" onClick={() => setMobileToggle(false)}>
-                        Home
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/about"
-                        onClick={() => setMobileToggle(false)}
-                      >
+                      <Link href="/about" onClick={() => setMobileToggle(false)}>
                         About
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        href="/service"
-                        onClick={() => setMobileToggle(false)}
-                      >
-                        Services
+                      <Link href="/national-awards" onClick={() => setMobileToggle(false)}>
+                        National Awards
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        href="/portfolio"
-                        onClick={() => setMobileToggle(false)}
-                      >
-                        Achievements
+                      <Link href="/omc" onClick={() => setMobileToggle(false)}>
+                        OMC
                       </Link>
                     </li>
                     <li>
-                      <Link href="/blog" onClick={() => setMobileToggle(false)}>
-                        Blog
+                      <Link href="/icd" onClick={() => setMobileToggle(false)}>
+                        ICD Sri Lanka
                       </Link>
-                    </li>
-                    <li className="menu-item-has-children">
-                      <Link href="#" onClick={(e) => { e.preventDefault(); }}>
-                        Pages
-                      </Link>
-                      <DropDown>
-                        <ul>
-                          <li>
-                            <Link
-                              href="/team"
-                              onClick={() => setMobileToggle(false)}
-                            >
-                              Our Team
-                            </Link>
-                          </li>
-                          <li>
-                            <Link
-                              href="/faq"
-                              onClick={() => setMobileToggle(false)}
-                            >
-                              FAQ
-                            </Link>
-                          </li>
-                        </ul>
-                      </DropDown>
                     </li>
                     <li>
-                      <Link
-                        href="/contact"
-                        onClick={() => setMobileToggle(false)}
-                      >
+                      <Link href="/events" onClick={() => setMobileToggle(false)}>
+                        Events
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/contact" onClick={() => setMobileToggle(false)}>
                         Contact
                       </Link>
                     </li>
@@ -162,7 +126,7 @@ export default function Header({ variant }) {
           </Link>
           <Div className="cs-side_header_box">
             <h2 className="cs-side_header_heading">
-              Do you have a project in your <br /> mind? Keep connect us.
+              Connect with the leading hair <br /> & beauty association in Sri Lanka.
             </h2>
           </Div>
           <Div className="cs-side_header_box">

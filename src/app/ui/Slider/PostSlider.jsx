@@ -54,8 +54,10 @@ export default function PostSlider({ data = postData }) {
     arrows: false,
     infinite: true,
     autoplay: true,
-    autoplaySpeed: 4000,
-    speed: 1000,
+    autoplaySpeed: 2500,
+    speed: 700,
+    cssEase: 'ease-in-out',
+    pauseOnHover: true,
     slidesToShow: 3,
     slidesToScroll: 1,
     responsive: [

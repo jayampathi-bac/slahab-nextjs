@@ -19,8 +19,8 @@ export default function ContactPage() {
         <Div className="row">
           <Div className="col-lg-6">
             <SectionHeading
-              title="Do you have a project <br/>in your mind?"
-              subtitle="Getting Touch"
+              title="Do you have any inquiries? <br/>Reach out to SLAHAB."
+              subtitle="Get In Touch"
             />
             <Spacing lg="55" md="30" />
             <ContactInfoWidget withIcon />
@@ -39,7 +39,7 @@ export default function ContactPage() {
                 <Spacing lg="20" md="20" />
               </Div>
               <Div className="col-sm-6">
-                <label className="cs-primary_color">Project Type*</label>
+                <label className="cs-primary_color">Inquiry Type*</label>
                 <input type="text" className="cs-form_field" />
                 <Spacing lg="20" md="20" />
               </Div>
@@ -49,7 +49,7 @@ export default function ContactPage() {
                 <Spacing lg="20" md="20" />
               </Div>
               <Div className="col-sm-12">
-                <label className="cs-primary_color">Mobile*</label>
+                <label className="cs-primary_color">Message*</label>
                 <textarea
                   cols="30"
                   rows="7"

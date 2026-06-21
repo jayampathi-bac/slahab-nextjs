@@ -23,3 +23,6 @@
 @import 'components/team';
 @import 'components/testimonial';
 @import 'components/timeline';
+
+/* Import global light mode overrides last to ensure proper cascade */
+@import 'common/light_mode';
