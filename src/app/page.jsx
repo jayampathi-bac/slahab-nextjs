@@ -55,28 +55,28 @@ const slahabPillars = [
     subtitle:
       'Regular workshops, masterclasses, and seminars with local and international styling experts to elevate professional standards.',
     imgUrl: '/images/slahab/card_education.jpg',
-    href: '/service',
+    href: '/events',
   },
   {
     title: 'National Awards',
     subtitle:
       'The premier national competition in Sri Lanka, celebrating hairdresser excellence and craftsmanship.',
     imgUrl: '/images/slahab/card_awards.jpg',
-    href: '/service',
+    href: '/national-awards',
   },
   {
     title: 'OMC Global Competitions',
     subtitle:
       'Official pathway for Sri Lankan stylists to compete at the prestigious OMC Hairworld and Asia Cup championships.',
     imgUrl: '/images/slahab/card_omc.jpg',
-    href: '/service',
+    href: '/omc',
   },
   {
     title: 'ICD Sri Lanka Chapter',
     subtitle:
       'Connecting Sri Lankan hair artists with Intercoiffure Mondial, the leading global association of high-fashion hair designers.',
     imgUrl: '/images/slahab/card_icd.jpg',
-    href: '/service',
+    href: '/icd',
   },
 ];
 
@@ -85,25 +85,25 @@ const portfolioData = [
   {
     title: 'SLAHAB Styling Showcase',
     subtitle: 'Kayal\'s Hair Creations & Style',
-    href: '/portfolio',
+    href: '#',
     src: '/images/slahab/port_kayal.jpg',
   },
   {
     title: 'OMC Asia Cup Winnings',
     subtitle: 'Moments of Pride - Malaysia',
-    href: '/portfolio',
+    href: '/omc',
     src: '/images/slahab/port_omc_asia.jpg',
   },
   {
     title: 'Advanced Educational Workshops',
     subtitle: 'National Hair & Beauty Seminars',
-    href: '/portfolio',
+    href: '/events',
     src: '/images/slahab/port_nihal.jpg',
   },
   {
     title: 'International Triumphs',
     subtitle: 'Sri Lanka Styling Team Wins',
-    href: '/portfolio',
+    href: '/omc',
     src: '/images/slahab/port_winnings.jpg',
   },
 ];
@@ -244,28 +244,28 @@ const slahabTestimonials = [
 // SLAHAB Blog Posts
 const slahabBlogs = [
   {
-    url: '/blog/blog-details',
+    url: '/omc',
     src: '/images/slahab/blog_omc_paris.jpg',
     alt: 'OMC Paris',
     date: '15 Jun 2026',
     title: 'Sri Lanka Stylists Prepare for the Prestigious OMC Hair World 2026 in Paris',
   },
   {
-    url: '/blog/blog-details',
+    url: '/national-awards',
     src: '/images/slahab/blog_awards.jpg',
     alt: 'SLAHAB Awards',
     date: '01 Jun 2026',
     title: 'SLAHAB National Awards 2026: Celebrating Creative Excellence in Colombo',
   },
   {
-    url: '/blog/blog-details',
+    url: '/icd',
     src: '/images/slahab/blog_icd_president.jpg',
     alt: 'ICD President Message',
     date: '20 May 2026',
     title: 'A Vision for Luxury Styling: Keynote Message from ICD President Mayuri Thilakawardana',
   },
   {
-    url: '/blog/blog-details',
+    url: '/events',
     src: '/images/slahab/blog_education.jpg',
     alt: 'SLAHAB Education',
     date: '10 May 2026',
