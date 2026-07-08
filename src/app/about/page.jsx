@@ -12,7 +12,7 @@ import pic2 from '../../../public/images/slahab/about/pic2.jpg'
 import pic3 from '../../../public/images/slahab/about/pic3.jpg'
 import pic4 from '../../../public/images/slahab/about/pic4.jpg'
 import pic5 from '../../../public/images/slahab/about/pic5.jpg'
-import navbarLogo from '../../../public/images/slahab/slahab_navbar_logo.png'
+import navbarLogo from '../../../public/images/slahab/slahab-original-v1.png'
 
 const funfaceData = [
   { title: 'Global Recognition', factNumber: '30+' },

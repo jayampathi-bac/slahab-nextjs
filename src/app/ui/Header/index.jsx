@@ -33,7 +33,7 @@ export default function Header({ variant }) {
             <Div className="cs-main_header_in">
               <Div className="cs-main_header_left">
                 <Link className="cs-site_branding" href="/">
-                  <img src="/images/slahab/slahab_navbar_logo.png" alt="SLAHAB Logo" style={{ maxHeight: '60px', width: 'auto' }} />
+                  <img src="/images/slahab/slahab-original-v1.png" alt="SLAHAB Logo" style={{ maxHeight: '60px', width: 'auto' }} />
                 </Link>
               </Div>
               <Div className="cs-main_header_center">

@@ -47,7 +47,7 @@ export default function Footer({ copyrightText, logoSrc, logoAlt, text }) {
             <Div className="col-lg-3 col-sm-6">
               <Div className="cs-footer_item">
                 <TextWidget
-                  logoSrc="/images/slahab/slahab_navbar_logo.png"
+                  logoSrc="/images/slahab/slahab-original-v1.png"
                   logoAlt="SLAHAB Logo"
                   text="SLAHAB is the official OMC representative for Sri Lanka, committed to raising the standards of the hair and beauty industry through education, national awards, and global competitions."
                 />
