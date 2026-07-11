@@ -136,33 +136,51 @@ const slahabTimeline = [
 
 const slahabTeam = [
   {
-    memberImage: '/images/slahab/board_member_1.png',
+    memberImage: '/images/slahab/team/nayana_karunaratne.jpg',
     memberName: 'Nayana Karunaratne',
     memberDesignation: 'Founder President & Trustee',
     memberSocial: { linkedin: '/', twitter: '/', youtube: '/', facebook: '/' },
   },
   {
-    memberImage: '/images/slahab/board_member_2.png',
+    memberImage: '/images/slahab/team/ramzi_rahaman.jpg',
     memberName: 'Ramzi Rahaman',
     memberDesignation: 'Past President & Trustee',
     memberSocial: { linkedin: '/', twitter: '/', youtube: '/', facebook: '/' },
   },
   {
-    memberImage: '/images/slahab/board_member_3.png',
+    memberImage: '/images/slahab/team/mayuri_thilakawardana.jpg',
     memberName: 'Mayuri Thilakawardana',
     memberDesignation: 'Past President & ICD President',
     memberSocial: { linkedin: '/', twitter: '/', youtube: '/', facebook: '/' },
   },
   {
-    memberImage: '/images/slahab/board_member_4.png',
+    memberImage: '/images/slahab/team/kaylvili_jayapragash.jpg',
     memberName: 'Kayalvili Jayapragash',
     memberDesignation: 'Current Joint President',
     memberSocial: { linkedin: '/', twitter: '/', youtube: '/', facebook: '/' },
   },
   {
-    memberImage: '/images/slahab/board_member_5.png',
+    memberImage: '/images/slahab/team/theekshanee_kariyawasam.jpg',
     memberName: 'Theekshanee Kriyawasam',
     memberDesignation: 'Current Joint President',
+    memberSocial: { linkedin: '/', twitter: '/', youtube: '/', facebook: '/' },
+  },
+  {
+    memberImage: '/images/slahab/team/lakshan_darshana.jpg',
+    memberName: 'Lakshan Darshana',
+    memberDesignation: 'Board Member',
+    memberSocial: { linkedin: '/', twitter: '/', youtube: '/', facebook: '/' },
+  },
+  {
+    memberImage: '/images/slahab/team/nihal_ranathunge.jpg',
+    memberName: 'Nihal Ranathunge',
+    memberDesignation: 'Board Member',
+    memberSocial: { linkedin: '/', twitter: '/', youtube: '/', facebook: '/' },
+  },
+  {
+    memberImage: '/images/slahab/team/niranjala_thennakoon.jpg',
+    memberName: 'Niranjala Thennakoon',
+    memberDesignation: 'Board Member',
     memberSocial: { linkedin: '/', twitter: '/', youtube: '/', facebook: '/' },
   },
 ]
