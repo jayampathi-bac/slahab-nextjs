@@ -12,7 +12,7 @@ export async function GET(req: Request) {
   if (cleanup) {
     // Delete duplicate media from failed upload attempts — keep IDs 1-4
     const { docs } = await payload.find({ collection: 'media', limit: 100 })
-    const toDelete = docs.filter((d) => d.id > 4)
+    const toDelete = docs.filter((d) => Number(d.id) > 4)
     await Promise.all(
       toDelete.map((d) => payload.delete({ collection: 'media', id: d.id })),
     )
