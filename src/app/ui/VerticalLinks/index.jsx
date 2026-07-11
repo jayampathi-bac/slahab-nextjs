@@ -1,3 +1,4 @@
+'use client';
 import Div from '../Div';
 
 export default function VerticalLinks({ title, data, variant }) {

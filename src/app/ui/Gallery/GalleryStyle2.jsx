@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import LightGallery from 'lightgallery/react';
 import lgThumbnail from 'lightgallery/plugins/thumbnail';

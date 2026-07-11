@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import Div from '../Div';
 import FullScreenVerticalSlider2 from '../Slider/FullScreenVerticalSlider2';

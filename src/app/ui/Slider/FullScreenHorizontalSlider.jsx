@@ -1,3 +1,4 @@
+'use client';
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel, Pagination, Navigation } from "swiper/modules";

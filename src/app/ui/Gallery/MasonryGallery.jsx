@@ -1,3 +1,4 @@
+'use client';
 import { Icon } from '@iconify/react';
 import React, { useState } from 'react';
 import Div from '../Div';
