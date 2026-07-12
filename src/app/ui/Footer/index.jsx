@@ -9,12 +9,16 @@ import TextWidget from '../Widget/TextWidget';
 
 const copyrightLinks = [
   {
-    title: 'Terms of Use',
-    href: '/',
+    title: 'Terms & Conditions',
+    href: '/terms',
   },
   {
     title: 'Privacy Policy',
-    href: '/',
+    href: '/privacy-policy',
+  },
+  {
+    title: 'Refund Policy',
+    href: '/refund-policy',
   },
 ];
 
