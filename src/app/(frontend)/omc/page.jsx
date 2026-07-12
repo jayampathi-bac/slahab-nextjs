@@ -33,25 +33,25 @@ const omcPics = [
 
 const omcTeamData = [
   {
-    memberImage: '/images/slahab/board_member_2.png',
+    memberImage: '/images/slahab/team/lakshan_darshana.jpg',
     memberName: 'Lakshan Darshana',
     memberDesignation: 'OMC Sri Lanka Delegation',
     memberSocial: { linkedin: '/', twitter: '/', youtube: '/', facebook: '/' },
   },
   {
-    memberImage: '/images/slahab/board_member_1.png',
-    memberName: 'Niranjala Wijekoon',
+    memberImage: '/images/slahab/team/niranjala_thennakoon.jpg',
+    memberName: 'Niranjala Thennakoon',
     memberDesignation: 'OMC Sri Lanka Delegation',
     memberSocial: { linkedin: '/', twitter: '/', youtube: '/', facebook: '/' },
   },
   {
-    memberImage: '/images/slahab/board_member_2.png',
+    memberImage: '/images/slahab/team/nihal_ranathunge.jpg',
     memberName: 'Nihal Ranathunga',
     memberDesignation: 'Bronze Medalist - OMC Hairworld',
     memberSocial: { linkedin: '/', twitter: '/', youtube: '/', facebook: '/' },
   },
   {
-    memberImage: '/images/slahab/board_member_4.png',
+    memberImage: '/images/slahab/team/kaylvili_jayapragash.jpg',
     memberName: 'Kayalvili Jayapragash',
     memberDesignation: 'Current Joint President / OMC Representative',
     memberSocial: { linkedin: '/', twitter: '/', youtube: '/', facebook: '/' },

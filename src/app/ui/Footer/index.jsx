@@ -21,19 +21,19 @@ const copyrightLinks = [
 const serviceMenu = [
   {
     title: 'Professional Education',
-    href: '/service',
+    href: '/events',
   },
   {
     title: 'National Awards',
-    href: '/service',
+    href: '/national-awards',
   },
   {
     title: 'OMC Global Competitions',
-    href: '/service',
+    href: '/omc',
   },
   {
     title: 'ICD Sri Lanka Chapter',
-    href: '/service',
+    href: '/icd',
   },
 ];
 

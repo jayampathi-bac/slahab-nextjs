@@ -214,28 +214,28 @@ const slahabTestimonials = [
 
 const slahabBlogs = [
   {
-    url: '/omc',
+    url: '#',
     src: '/images/slahab/blog_omc_paris.jpg',
     alt: 'OMC Paris',
     date: '15 Jun 2026',
     title: 'Sri Lanka Stylists Prepare for the Prestigious OMC Hair World 2026 in Paris',
   },
   {
-    url: '/national-awards',
+    url: '#',
     src: '/images/slahab/blog_awards.jpg',
     alt: 'SLAHAB Awards',
     date: '01 Jun 2026',
     title: 'SLAHAB National Awards 2026: Celebrating Creative Excellence in Colombo',
   },
   {
-    url: '/icd',
+    url: '#',
     src: '/images/slahab/blog_icd_president.jpg',
     alt: 'ICD President Message',
     date: '20 May 2026',
     title: 'A Vision for Luxury Styling: Keynote Message from ICD President Mayuri Thilakawardana',
   },
   {
-    url: '/events',
+    url: '#',
     src: '/images/slahab/blog_education.jpg',
     alt: 'SLAHAB Education',
     date: '10 May 2026',
@@ -381,8 +381,6 @@ export default async function Home() {
                 <SectionHeading
                   title="Latest Industry Publications"
                   subtitle="Our Blog"
-                  btnText="View More Blog"
-                  btnLink="/blog"
                 />
                 <Spacing lg="90" md="45" />
               </Div>

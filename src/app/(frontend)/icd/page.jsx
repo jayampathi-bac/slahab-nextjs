@@ -12,26 +12,26 @@ const icdLogo = '/images/slahab/icd/icd_logo.png';
 
 const icdTeamData = [
   {
-    memberImage: '/images/slahab/board_member_1.png',
+    memberImage: '/images/slahab/team/mayuri_thilakawardana.jpg',
     memberName: 'Mayuri Thilakawardana',
     memberDesignation: 'ICD Sri Lanka President',
     memberSocial: { linkedin: '/', twitter: '/', youtube: '/', facebook: '/' },
   },
   {
-    memberImage: '/images/slahab/board_member_5.png',
+    memberImage: '/images/slahab/team/nayana_karunaratne.jpg',
     memberName: 'Nayana Karunaratne',
     memberDesignation: 'Founder President & Trustee',
     memberSocial: { linkedin: '/', twitter: '/', youtube: '/', facebook: '/' },
   },
   {
-    memberImage: '/images/slahab/board_member_3.png',
+    memberImage: '/images/slahab/team/ramzi_rahaman.jpg',
     memberName: 'Ramzi Rahaman',
     memberDesignation: 'Past President & Trustee',
     memberSocial: { linkedin: '/', twitter: '/', youtube: '/', facebook: '/' },
   },
   {
-    memberImage: '/images/slahab/board_member_4.png',
-    memberName: 'Theekshanee Kriyawasam',
+    memberImage: '/images/slahab/team/theekshanee_kariyawasam.jpg',
+    memberName: 'Theekshanee Kariyawasam',
     memberDesignation: 'Current Joint President',
     memberSocial: { linkedin: '/', twitter: '/', youtube: '/', facebook: '/' },
   },

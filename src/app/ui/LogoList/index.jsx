@@ -3,34 +3,19 @@ import React from 'react';
 import Div from '../Div';
 
 const partnerLogos = [
-  {
-    src: '/images/partner_1.svg',
-    alt: 'Partner',
-  },
-  {
-    src: '/images/partner_2.svg',
-    alt: 'Partner',
-  },
-  {
-    src: '/images/partner_3.svg',
-    alt: 'Partner',
-  },
-  {
-    src: '/images/partner_4.svg',
-    alt: 'Partner',
-  },
-  {
-    src: '/images/partner_5.svg',
-    alt: 'Partner',
-  },
+  { src: '/images/slahab/partners/omc.svg', alt: 'OMC — Organisation Mondiale Coiffure' },
+  { src: '/images/slahab/partners/intercoiffure.svg', alt: 'Intercoiffure Mondial — ICD Sri Lanka' },
+  { src: '/images/slahab/partners/cinnamon.svg', alt: 'Cinnamon Hotels & Resorts' },
+  { src: '/images/slahab/partners/jetwing.svg', alt: 'Jetwing Travels' },
+  { src: '/images/slahab/partners/cidesco.svg', alt: 'CIDESCO International' },
 ];
 
 export default function LogoList() {
   return (
     <Div className="cs-partner_logo_wrap">
-      {partnerLogos.map((partnerLogo, index) => (
+      {partnerLogos.map((logo, index) => (
         <div className="cs-partner_logo" key={index}>
-          <img src={partnerLogo.src} alt={partnerLogo.alt} />
+          <img src={logo.src} alt={logo.alt} style={{ width: '140px', height: '56px', objectFit: 'contain' }} />
         </div>
       ))}
     </Div>

@@ -83,15 +83,19 @@ export default function EventPopup({ events }) {
         .ep-close-btn:hover { background: rgba(255,255,255,0.15) !important; }
         .ep-later-btn:hover { border-color: rgba(194,155,87,0.5) !important; color: #fff !important; }
         @media (max-width: 600px) {
-          .ep-inner { flex-direction: column !important; }
+          .ep-inner { flex-direction: column !important; min-height: auto !important; }
           .ep-image-col {
             width: 100% !important;
-            height: 220px !important;
+            height: 160px !important;
+            min-height: 160px !important;
             flex-shrink: 0 !important;
           }
-          .ep-content-col { width: 100% !important; padding: 22px 20px 24px !important; }
-          .ep-title { font-size: 20px !important; }
-          .ep-card { width: min(95vw, 480px) !important; max-height: 92vh !important; }
+          .ep-content-col { width: 100% !important; padding: 18px !important; }
+          .ep-title { font-size: 18px !important; margin-bottom: 16px !important; }
+          .ep-details-list { gap: 10px !important; margin-bottom: 16px !important; }
+          .ep-divider { margin-bottom: 12px !important; }
+          .ep-dots { margin-top: 12px !important; }
+          .ep-card { width: min(92vw, 480px) !important; max-height: 95vh !important; overflow: hidden !important; }
         }
       `}</style>
 
@@ -120,7 +124,6 @@ export default function EventPopup({ events }) {
           zIndex: 9999,
           width: 'min(760px, calc(100vw - 24px))',
           maxHeight: '90vh',
-          overflowY: 'auto',
           borderRadius: '24px',
           overflow: 'hidden',
           background: '#0a0a0a',
@@ -295,6 +298,7 @@ export default function EventPopup({ events }) {
 
               {/* Details list */}
               <div
+                className="ep-details-list"
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
@@ -321,6 +325,7 @@ export default function EventPopup({ events }) {
             <div>
               {/* Divider */}
               <div
+                className="ep-divider"
                 style={{
                   height: '1px',
                   backgroundColor: 'rgba(255,255,255,0.05)',
@@ -376,6 +381,7 @@ export default function EventPopup({ events }) {
               {/* Multi-event dots */}
               {events.length > 1 && (
                 <div
+                  className="ep-dots"
                   style={{
                     display: 'flex',
                     gap: '8px',
