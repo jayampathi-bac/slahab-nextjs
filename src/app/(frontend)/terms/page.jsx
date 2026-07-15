@@ -26,14 +26,15 @@ export default function TermsPage() {
           </PolicySection>
 
           <PolicySection title="2. About SLAHAB">
-            <p>SLAHAB is the official representative of the Organisation Mondiale Coiffure (OMC) in Sri Lanka and hosts the Intercoiffure Mondial (ICD) Sri Lanka Chapter. Our activities include professional education events, national hair and beauty competitions, and international representation for Sri Lankan hairdressers and beauticians. We are a professional association and do not sell physical products.</p>
+            <p>The Sri Lanka Association of Hairdressers and Beauticians (SLAHAB) is a professional body established in 1996 and registered under the Companies Act of Sri Lanka. Over the years, SLAHAB has played a key role in advancing the hairdressing and beauty industry by organizing national and international competitions, workshops, conferences, and training programmes that promote professional excellence and skills development.</p>
+            <p>SLAHAB actively collaborates with leading global organizations, including Intercoiffure Mondial (ICD) and Organisation Mondiale Coiffure (OMC), to bring international exposure and opportunities to industry professionals. Through its initiatives, the association continues to support innovation, education, and the growth of the beauty industry both locally and internationally.</p>
           </PolicySection>
 
           <PolicySection title="3. Use of the Website">
             <ul>
               <li>You must be at least 18 years of age to register for events or submit enquiries through our website.</li>
               <li>You are responsible for ensuring that all information you provide during registration is accurate, current, and complete.</li>
-              <li>You agree not to use our website for any unlawful or unauthorised purpose, including but not limited to submitting fraudulent registrations or interfering with the security or functionality of the website.</li>
+              <li>You agree not to use our website for any unlawful or unauthorized purpose, including, but not limited to, submitting fraudulent registrations or interfering with the security or functionality of the website.</li>
               <li>SLAHAB reserves the right to restrict or terminate access to the website for any user who violates these terms.</li>
             </ul>
           </PolicySection>
@@ -62,7 +63,7 @@ export default function TermsPage() {
             <ul>
               <li>Conduct themselves professionally and respectfully toward fellow delegates, speakers, staff, and venue personnel.</li>
               <li>Comply with all venue rules and Sri Lankan laws and regulations.</li>
-              <li>Not engage in any discriminatory, harassing, or disruptive behaviour.</li>
+              <li>Not engage in any discriminatory, harassing, or disruptive behavior.</li>
             </ul>
             <p>SLAHAB reserves the right to remove any delegate from an event without refund if their conduct is deemed inappropriate or disruptive.</p>
           </PolicySection>

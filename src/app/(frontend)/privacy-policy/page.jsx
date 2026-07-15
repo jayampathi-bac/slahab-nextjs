@@ -21,7 +21,7 @@ export default function PrivacyPolicyPage() {
       <div className="container">
         <div style={{ maxWidth: '760px' }}>
           <PolicySection title="1. Introduction">
-            <p>Sri Lanka Association of Hairdressers and Beauticians (<strong>SLAHAB</strong>), operating as the official OMC representative and ICD Sri Lanka chapter, is committed to protecting the privacy and personal data of all individuals who interact with our website at <strong>www.slahab.lk</strong>. This Privacy Policy explains what information we collect, how we use it, and the rights you have over your data.</p>
+            <p>Sri Lanka Association of Hairdressers and Beauticians (<strong>SLAHAB</strong>), operating as the official ICD representative and ICD Sri Lanka chapter, is committed to protecting the privacy and personal data of all individuals who interact with our website at <strong>www.slahab.lk</strong>. This Privacy Policy explains what information we collect, how we use it, and the rights you have over your data.</p>
             <p>By using our website or registering for our events, you agree to the collection and use of information in accordance with this policy.</p>
           </PolicySection>
 
@@ -87,7 +87,7 @@ export default function PrivacyPolicyPage() {
           </PolicySection>
 
           <PolicySection title="10. Contact Us">
-            <p>For any questions or concerns regarding this Privacy Policy, please contact us:</p>
+            <p>For any questions regarding these Terms & Conditions:</p>
             <ul>
               <li><strong>Email:</strong> slahab1996@gmail.com</li>
               <li><strong>Phone:</strong> +94 770 567 359</li>
