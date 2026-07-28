@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import { Icon } from '@iconify/react';
-import Link from 'next/link';
 import Div from '../Div';
 
 export default function Team({
@@ -17,31 +16,31 @@ export default function Team({
         <Div className="cs-member_overlay" />
       </Div>
       <Div className="cs-member_info">
-        <h2 className="cs-member_name">
-          <Link href="/team/team-details">{memberName}</Link>
-        </h2>
+        {/* Name is plain text — no team-details page exists yet */}
+        <h2 className="cs-member_name">{memberName}</h2>
         <Div className="cs-member_designation">{memberDesignation}</Div>
       </Div>
+      {/* Social icons are display-only (unclickable) until real profile URLs are provided */}
       <Div className="cs-member_social cs-primary_color">
-        {memberSocial.linkedin && (
-          <Link href={memberSocial.linkedin}>
+        {memberSocial?.linkedin && (
+          <span style={{ cursor: 'default' }}>
             <Icon icon="fa6-brands:linkedin-in" />
-          </Link>
+          </span>
         )}
-        {memberSocial.twitter && (
-          <Link href={memberSocial.twitter}>
+        {memberSocial?.twitter && (
+          <span style={{ cursor: 'default' }}>
             <Icon icon="fa-brands:twitter" />
-          </Link>
+          </span>
         )}
-        {memberSocial.youtube && (
-          <Link href={memberSocial.youtube}>
+        {memberSocial?.youtube && (
+          <span style={{ cursor: 'default' }}>
             <Icon icon="fa-brands:youtube" />
-          </Link>
+          </span>
         )}
-        {memberSocial.facebook && (
-          <Link href={memberSocial.facebook}>
+        {memberSocial?.facebook && (
+          <span style={{ cursor: 'default' }}>
             <Icon icon="fa-brands:facebook-f" />
-          </Link>
+          </span>
         )}
       </Div>
     </Div>

@@ -23,7 +23,9 @@ export const metadata = {
     "Established in 1996, SLAHAB is the premier national body representing hairdressers, beauticians, and stylists in Sri Lanka, fostering education, global standards, and international competition.",
   authors: [{ name: "Laralink" }],
   icons: {
-    icon: "/images/favicon.ico",
+    icon: [{ url: "/images/slahab/slahab_crest.png", type: "image/png" }],
+    shortcut: "/images/slahab/slahab_crest.png",
+    apple: "/images/slahab/slahab_crest.png",
   },
   openGraph: {
     type: "website",

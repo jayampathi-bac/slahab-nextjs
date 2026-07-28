@@ -382,7 +382,59 @@ export default async function Home() {
                   title="Latest Industry Publications"
                   subtitle="Our Blog"
                 />
-                <Spacing lg="90" md="45" />
+                <Spacing lg="20" md="10" />
+                {/* Editorial brand statement — clean typographic feature for the light section */}
+                <div style={{ maxWidth: '380px' }}>
+                  <h3
+                    className="cs-primary_font"
+                    style={{
+                      fontSize: '26px',
+                      lineHeight: 1.5,
+                      color: '#141414',
+                      fontWeight: 400,
+                      margin: '0 0 28px',
+                    }}
+                  >
+                    Setting the national standard for{' '}
+                    <span style={{ color: 'var(--accent)', fontWeight: 600 }}>
+                      hair &amp; beauty excellence
+                    </span>{' '}
+                    across Sri Lanka.
+                  </h3>
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '16px',
+                      marginBottom: '18px',
+                    }}
+                  >
+                    <span style={{ width: '48px', height: '2px', background: 'var(--accent)' }} />
+                    <span
+                      style={{
+                        color: 'var(--accent)',
+                        fontSize: '11px',
+                        fontWeight: 700,
+                        letterSpacing: '3px',
+                        textTransform: 'uppercase',
+                      }}
+                    >
+                      Est. 1996
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      margin: 0,
+                      fontSize: '14px',
+                      lineHeight: 1.8,
+                      color: '#888',
+                      fontWeight: 300,
+                    }}
+                  >
+                    Official OMC Representative &middot; ICD Sri Lanka Chapter
+                  </p>
+                </div>
+                <Spacing lg="40" md="30" />
               </Div>
               <Div className="col-xl-7 offset-xl-1">
                 <Div className="cs-half_of_full_width">

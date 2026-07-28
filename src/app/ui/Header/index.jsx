@@ -122,7 +122,7 @@ export default function Header({ variant }) {
         <Div className="cs-side_header_in">
           <Div className="cs-side_header_shape" />
           <Link className="cs-site_branding" href="/">
-            <img src="/images/slahab/slahab_modern_logo.png" alt="SLAHAB Logo" style={{ maxHeight: '60px', width: 'auto' }} />
+            <img src="/images/slahab/slahab_crest.png" alt="SLAHAB Logo" style={{ maxHeight: '96px', width: 'auto' }} />
           </Link>
           <Div className="cs-side_header_box">
             <h2 className="cs-side_header_heading">
