@@ -4,7 +4,7 @@ export const EventRegistrations: CollectionConfig = {
   slug: 'event-registrations',
   admin: {
     useAsTitle: 'email',
-    defaultColumns: ['firstName', 'lastName', 'email', 'event', 'roomType', 'status', 'createdAt'],
+    defaultColumns: ['firstName', 'lastName', 'email', 'event', 'packageName', 'amountCharged', 'status', 'payhereOrderId', 'createdAt'],
     group: 'Events',
   },
   access: {
@@ -26,11 +26,53 @@ export const EventRegistrations: CollectionConfig = {
       type: 'select',
       defaultValue: 'pending',
       options: [
-        { label: 'Pending Review', value: 'pending' },
+        { label: 'Pending Payment', value: 'pending' },
         { label: 'Confirmed', value: 'confirmed' },
         { label: 'Cancelled', value: 'cancelled' },
       ],
       admin: { position: 'sidebar' },
+    },
+    {
+      name: 'packageName',
+      type: 'text',
+      label: 'Package Name',
+      admin: { position: 'sidebar', readOnly: true, description: 'Tier name at time of purchase' },
+    },
+    {
+      name: 'amountCharged',
+      type: 'number',
+      label: 'Amount Charged',
+      admin: { position: 'sidebar', readOnly: true },
+    },
+    {
+      name: 'currency',
+      type: 'text',
+      label: 'Currency',
+      admin: { position: 'sidebar', readOnly: true },
+    },
+    {
+      name: 'payhereOrderId',
+      type: 'text',
+      label: 'PayHere Order ID',
+      admin: { position: 'sidebar', readOnly: true },
+    },
+    {
+      name: 'payherePaymentId',
+      type: 'text',
+      label: 'PayHere Payment ID',
+      admin: { position: 'sidebar', readOnly: true, description: 'Set by webhook on confirmed payment' },
+    },
+    {
+      name: 'paymentMethod',
+      type: 'text',
+      label: 'Payment Method',
+      admin: { position: 'sidebar', readOnly: true, description: 'e.g. VISA, MASTER' },
+    },
+    {
+      name: 'cardHolderName',
+      type: 'text',
+      label: 'Card Holder Name',
+      admin: { position: 'sidebar', readOnly: true },
     },
     {
       type: 'row',

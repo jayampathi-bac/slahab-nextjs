@@ -33,3 +33,6 @@ next-env.d.ts
 .DS_Store
 Thumbs.db
 src/scripts/*.mjs
+
+# Test artifacts
+.playwright-mcp/

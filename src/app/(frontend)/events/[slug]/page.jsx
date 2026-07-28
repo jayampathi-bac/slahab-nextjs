@@ -9,6 +9,15 @@ import Icon from '@/app/ui/Icon'
 
 export const dynamic = 'force-dynamic'
 
+function isSafeUrl(url) {
+  try {
+    const { protocol } = new URL(url)
+    return protocol === 'https:' || protocol === 'http:'
+  } catch {
+    return false
+  }
+}
+
 export async function generateMetadata({ params }) {
   const { slug } = await params
   const payload = await getPayload({ config })
@@ -444,7 +453,7 @@ export default async function EventDetailPage({ params }) {
                       Registration is handled via our official portal.
                     </p>
                     <a
-                      href={event.registrationLink}
+                      href={isSafeUrl(event.registrationLink) ? event.registrationLink : '#'}
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{
@@ -464,7 +473,11 @@ export default async function EventDetailPage({ params }) {
                     </a>
                   </div>
                 ) : (
-                  <RegisterForm eventId={String(event.id)} pricingTiers={event.pricingTiers} />
+                  <RegisterForm
+                    eventId={String(event.id)}
+                    eventSlug={event.slug}
+                    pricingTiers={event.pricingTiers}
+                  />
                 )}
               </div>
             </div>

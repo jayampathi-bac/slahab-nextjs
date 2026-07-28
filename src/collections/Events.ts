@@ -113,7 +113,35 @@ export const Events: CollectionConfig = {
       label: 'Pricing Tiers',
       fields: [
         { name: 'name', type: 'text', required: true, label: 'Package Name' },
-        { name: 'price', type: 'text', required: true, label: 'Price (e.g. €810 / person)' },
+        { name: 'price', type: 'text', required: true, label: 'Price Label (display only — e.g. €810 / person)' },
+        {
+          name: 'priceAmount',
+          type: 'number',
+          label: 'Price Amount (numeric)',
+          admin: { description: 'Numeric value for payment processing, no symbol — e.g. 810' },
+        },
+        {
+          name: 'currency',
+          type: 'select',
+          label: 'Currency',
+          defaultValue: 'EUR',
+          options: [
+            { label: 'EUR — Euro', value: 'EUR' },
+            { label: 'LKR — Sri Lankan Rupee', value: 'LKR' },
+            { label: 'USD — US Dollar', value: 'USD' },
+          ],
+        },
+        {
+          name: 'packageKey',
+          type: 'select',
+          label: 'Package Key (SKU)',
+          admin: { description: 'Links this tier to the registration form package option.' },
+          options: [
+            { label: 'Single Room', value: 'single' },
+            { label: 'Sharing Double Room', value: 'sharing-double' },
+            { label: 'Conference Only', value: 'conference-only' },
+          ],
+        },
         { name: 'includes', type: 'textarea', label: "What's Included" },
       ],
     },
