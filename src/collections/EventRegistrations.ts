@@ -29,8 +29,12 @@ export const EventRegistrations: CollectionConfig = {
         { label: 'Pending Payment', value: 'pending' },
         { label: 'Confirmed', value: 'confirmed' },
         { label: 'Cancelled', value: 'cancelled' },
+        { label: 'Refunded', value: 'refunded' },
       ],
-      admin: { position: 'sidebar' },
+      admin: {
+        position: 'sidebar',
+        description: 'Set to "Refunded" manually after issuing the refund in the PayHere merchant portal.',
+      },
     },
     {
       name: 'packageName',

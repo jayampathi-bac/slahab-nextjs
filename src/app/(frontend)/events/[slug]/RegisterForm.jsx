@@ -5,27 +5,27 @@ import Icon from '@/app/ui/Icon'
 
 const inputStyle = {
   width: '100%',
-  padding: '12px 0',
-  backgroundColor: 'transparent',
-  border: 'none',
-  borderBottom: '1px solid rgba(255,255,255,0.2)',
-  color: '#fff',
+  padding: '13px 15px',
+  backgroundColor: 'rgba(255,255,255,0.04)',
+  border: '1px solid rgba(194,155,87,0.22)',
+  borderRadius: '7px',
+  color: '#f4f1ea',
   fontSize: '15px',
   outline: 'none',
   boxSizing: 'border-box',
-  transition: 'border-color 0.3s',
+  transition: 'border-color 0.25s, background-color 0.25s, box-shadow 0.25s',
   fontFamily: 'inherit',
-  fontWeight: 300,
+  fontWeight: 400,
 }
 
 const labelStyle = {
   display: 'block',
-  color: '#888',
+  color: '#d8b878',
   fontSize: '10px',
-  fontWeight: 600,
+  fontWeight: 700,
   textTransform: 'uppercase',
-  letterSpacing: '2px',
-  marginBottom: '4px',
+  letterSpacing: '1.8px',
+  marginBottom: '9px',
 }
 
 export default function RegisterForm({ eventId, eventSlug, pricingTiers }) {
@@ -335,7 +335,31 @@ export default function RegisterForm({ eventId, eventSlug, pricingTiers }) {
 
   return (
     <>
-      <form action={action} style={{ position: 'relative' }}>
+      <style>{`
+        .slahab-reg-form input::placeholder,
+        .slahab-reg-form textarea::placeholder {
+          color: rgba(244,241,234,0.38);
+          font-weight: 300;
+        }
+        .slahab-reg-form input:focus,
+        .slahab-reg-form textarea:focus,
+        .slahab-reg-form select:focus {
+          border-color: var(--accent);
+          background-color: rgba(194,155,87,0.07);
+          box-shadow: 0 0 0 3px rgba(194,155,87,0.14);
+        }
+        .slahab-reg-form input:hover,
+        .slahab-reg-form textarea:hover,
+        .slahab-reg-form select:hover {
+          border-color: rgba(194,155,87,0.4);
+        }
+        .slahab-reg-form select option {
+          background-color: #141210;
+          color: #f4f1ea;
+        }
+      `}</style>
+
+      <form action={action} className="slahab-reg-form" style={{ position: 'relative' }}>
         {/* Loading overlay while payment popup initialises */}
         {isPaymentLoading && (
           <div
@@ -414,10 +438,18 @@ export default function RegisterForm({ eventId, eventSlug, pricingTiers }) {
           <select
             name="roomType"
             required
-            style={{ ...inputStyle, cursor: 'pointer', appearance: 'none', backgroundColor: '#0a0a0a', color: '#fff' }}
+            style={{
+              ...inputStyle,
+              cursor: 'pointer',
+              appearance: 'none',
+              backgroundImage: 'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'14\' height=\'14\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%23c29b57\' stroke-width=\'2\'><polyline points=\'6 9 12 15 18 9\'/></svg>")',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'right 14px center',
+              paddingRight: '40px',
+            }}
             defaultValue=""
           >
-            <option value="" disabled style={{ color: '#666' }}>
+            <option value="" disabled>
               Select a package…
             </option>
             {pricingTiers && pricingTiers.length > 0 ? (
@@ -482,34 +514,54 @@ export default function RegisterForm({ eventId, eventSlug, pricingTiers }) {
           style={{
             width: '100%',
             padding: '18px',
-            backgroundColor: isProcessing ? '#111' : 'var(--accent)',
-            color: isProcessing ? '#888' : '#000',
-            border: isProcessing ? '1px solid #333' : 'none',
+            background: isProcessing
+              ? '#181818'
+              : 'linear-gradient(135deg, #e0c07f 0%, #c29b57 45%, #a8823f 100%)',
+            color: isProcessing ? '#777' : '#1a1206',
+            border: isProcessing ? '1px solid #2e2e2e' : 'none',
+            borderRadius: '8px',
             fontSize: '12px',
             fontWeight: 700,
             textTransform: 'uppercase',
             letterSpacing: '3px',
             cursor: isProcessing ? 'not-allowed' : 'pointer',
-            transition: 'background-color 0.3s, color 0.3s',
+            boxShadow: isProcessing ? 'none' : '0 10px 24px -8px rgba(194,155,87,0.55)',
+            transition: 'transform 0.2s, box-shadow 0.2s, filter 0.2s',
           }}
+          onMouseEnter={e => { if (!isProcessing) { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 16px 30px -8px rgba(194,155,87,0.7)'; e.currentTarget.style.filter = 'brightness(1.05)' } }}
+          onMouseLeave={e => { if (!isProcessing) { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 10px 24px -8px rgba(194,155,87,0.55)'; e.currentTarget.style.filter = 'brightness(1)' } }}
         >
           {isPending ? 'Processing…' : isPaymentLoading ? 'Opening Payment…' : 'Register & Pay'}
         </button>
 
-        <p
-          style={{
-            color: '#666',
-            fontSize: '11px',
-            textAlign: 'center',
-            marginTop: '20px',
-            fontWeight: 300,
-            textTransform: 'uppercase',
-            letterSpacing: '1px',
-          }}
-        >
-          <Icon icon="ph:lock-simple-light" style={{ fontSize: '13px', marginRight: '6px', verticalAlign: 'middle' }} />
-          Secured by PayHere
-        </p>
+        <div style={{ marginTop: '22px', textAlign: 'center' }}>
+          <p
+            style={{
+              color: '#8a857c',
+              fontSize: '11px',
+              margin: '0 0 14px',
+              fontWeight: 400,
+              textTransform: 'uppercase',
+              letterSpacing: '1.5px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '6px',
+            }}
+          >
+            <Icon icon="ph:lock-simple-light" style={{ fontSize: '13px' }} />
+            Secured by PayHere
+          </p>
+          {/* Accepted payment methods — official PayHere logo banner (responsive) */}
+          <img
+            src="/images/payhere/payhere-short-banner.png"
+            alt="Accepted payment methods via PayHere: Visa, Mastercard, American Express, and more"
+            width={580}
+            height={120}
+            className="slahab-payhere-badge"
+            style={{ width: '100%', maxWidth: '250px', height: 'auto', display: 'block', margin: '0 auto', opacity: 0.95 }}
+          />
+        </div>
       </form>
     </>
   )

@@ -321,11 +321,15 @@ export default async function EventDetailPage({ params }) {
                       <div
                         key={ti}
                         style={{
-                          border: ti === 0 ? '1px solid var(--accent)' : '1px solid #eaeaea',
-                          padding: '40px 30px',
+                          border: ti === 0 ? '1px solid var(--accent)' : '1px solid #ececec',
+                          borderRadius: '14px',
+                          padding: '44px 30px',
                           position: 'relative',
-                          backgroundColor: '#fff',
+                          background: ti === 0 ? 'linear-gradient(180deg, #fffdf7 0%, #ffffff 100%)' : '#fff',
                           textAlign: 'center',
+                          boxShadow: ti === 0
+                            ? '0 26px 54px -22px rgba(194,155,87,0.38), 0 4px 14px rgba(0,0,0,0.05)'
+                            : '0 20px 44px -26px rgba(0,0,0,0.2)',
                         }}
                       >
                         {ti === 0 && (
@@ -426,26 +430,69 @@ export default async function EventDetailPage({ params }) {
                 style={{
                   position: 'sticky',
                   top: '120px',
-                  backgroundColor: '#0a0a0a',
-                  padding: '50px 40px',
-                  border: '1px solid rgba(194, 155, 87, 0.4)',
+                  background: 'linear-gradient(165deg, #201d18 0%, #121110 50%, #0a0908 100%)',
+                  padding: '46px 40px',
+                  borderRadius: '16px',
+                  border: '1px solid rgba(194,155,87,0.28)',
+                  boxShadow:
+                    '0 40px 80px -24px rgba(0,0,0,0.75), 0 8px 24px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06), inset 0 0 0 1px rgba(194,155,87,0.04)',
+                  overflow: 'hidden',
                 }}
               >
-                <h2
-                  className="cs-primary_font"
+                {/* Gold top accent glow */}
+                <div
                   style={{
-                    color: '#fff',
-                    fontSize: '28px',
-                    fontWeight: 400,
-                    marginBottom: '12px',
-                    letterSpacing: '1px',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: '3px',
+                    background: 'linear-gradient(90deg, transparent, var(--accent), transparent)',
                   }}
-                >
-                  Reserve Your Spot
-                </h2>
-                <p style={{ color: '#888', fontSize: '14px', fontWeight: 300, lineHeight: 1.6, marginBottom: '32px' }}>
-                  Fill in the form below and our team will confirm your registration.
-                </p>
+                />
+                <div
+                  aria-hidden
+                  style={{
+                    position: 'absolute',
+                    top: '-120px',
+                    right: '-120px',
+                    width: '260px',
+                    height: '260px',
+                    background: 'radial-gradient(circle, rgba(194,155,87,0.14) 0%, transparent 70%)',
+                    pointerEvents: 'none',
+                  }}
+                />
+
+                <div style={{ position: 'relative' }}>
+                  <span
+                    className="cs-primary_font"
+                    style={{
+                      display: 'block',
+                      color: 'var(--accent)',
+                      fontSize: '10px',
+                      fontWeight: 700,
+                      textTransform: 'uppercase',
+                      letterSpacing: '3px',
+                      marginBottom: '14px',
+                    }}
+                  >
+                    Registration
+                  </span>
+                  <h2
+                    className="cs-primary_font"
+                    style={{
+                      color: '#fff',
+                      fontSize: '30px',
+                      fontWeight: 500,
+                      marginBottom: '12px',
+                      letterSpacing: '0.5px',
+                    }}
+                  >
+                    Reserve Your Spot
+                  </h2>
+                  <p style={{ color: '#a7a29a', fontSize: '14px', fontWeight: 300, lineHeight: 1.7, marginBottom: '32px' }}>
+                    Secure your place at this exclusive gathering. Complete the form below to register and pay.
+                  </p>
 
                 {event.registrationLink ? (
                   <div style={{ textAlign: 'center' }}>
@@ -479,6 +526,7 @@ export default async function EventDetailPage({ params }) {
                     pricingTiers={event.pricingTiers}
                   />
                 )}
+                </div>
               </div>
             </div>
           </div>

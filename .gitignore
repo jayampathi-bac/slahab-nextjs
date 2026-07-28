@@ -36,3 +36,6 @@ src/scripts/*.mjs
 
 # Test artifacts
 .playwright-mcp/
+
+# Local one-off asset scripts
+process_logo_payhere.py
