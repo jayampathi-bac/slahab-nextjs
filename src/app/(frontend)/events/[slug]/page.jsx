@@ -373,7 +373,7 @@ export default async function EventDetailPage({ params }) {
           </div>
           <Spacing lg="52" md="36" />
           <GalleryGrid images={event.gallery} eventTitle={event.title} />
-          <Spacing lg="88" md="60" />
+          <Spacing lg="88" md="80" />
         </div>
       )}
 
@@ -396,9 +396,9 @@ export default async function EventDetailPage({ params }) {
 
       {/* ── CTA ──────────────────────────────────────────────────────── */}
       <div className="container">
-        <Spacing lg="80" md="52" />
+        <Spacing lg="80" md="80" />
         <Cta title="Have questions about this event? <br />Reach out to the SLAHAB team." btnText="Contact Us" btnLink="/contact" bgSrc="/images/cta_bg.jpeg" />
-        <Spacing lg="100" md="72" />
+        <Spacing lg="100" md="88" />
       </div>
 
       {/* Floating conversion CTA — appears once the form scrolls out of view */}
