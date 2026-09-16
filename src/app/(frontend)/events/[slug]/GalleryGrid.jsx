@@ -52,12 +52,14 @@ export default function GalleryGrid({ images, eventTitle }) {
     return () => clearTimeout(id)
   }, [current, paused, next])
 
-  // Keep active thumbnail scrolled into view
+  // Keep active thumbnail scrolled into view — scroll only the strip, not the page
   useEffect(() => {
     const strip = thumbsRef.current
     if (!strip) return
     const active = strip.children[current]
-    if (active) active.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+    if (!active) return
+    const targetLeft = active.offsetLeft - (strip.offsetWidth - active.offsetWidth) / 2
+    strip.scrollTo({ left: targetLeft, behavior: 'smooth' })
   }, [current])
 
   // Swipe support
