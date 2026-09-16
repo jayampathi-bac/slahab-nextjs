@@ -162,7 +162,7 @@ export default async function EventDetailPage({ params }) {
 
       {/* ── Overview + stat strip ────────────────────────────────────── */}
       <Div className="cs-light_mode">
-        <Spacing lg="80" md="52" />
+        <div style={{ height: 'clamp(52px, 8vw, 80px)' }} />
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-6">
@@ -214,13 +214,13 @@ export default async function EventDetailPage({ params }) {
             </div>
           </>
         )}
-        <Spacing lg="80" md="52" />
+        <div style={{ height: 'clamp(52px, 8vw, 80px)' }} />
       </Div>
 
       {/* ── Program / Description + registration sidebar ─────────────── */}
       {(hasProgram || !isPast) && (
       <div className="container">
-        <Spacing lg="72" md="48" />
+        <div style={{ height: 'clamp(52px, 7vw, 72px)' }} />
         <div className="row">
           <div className={hasProgram ? 'col-lg-7' : 'col-lg-8'}>
             {hasProgram && (
@@ -286,7 +286,7 @@ export default async function EventDetailPage({ params }) {
             </div>
           )}
         </div>
-        <Spacing lg="72" md="48" />
+        <div style={{ height: 'clamp(52px, 7vw, 72px)' }} />
       </div>
       )}
 
@@ -341,7 +341,7 @@ export default async function EventDetailPage({ params }) {
       {/* ── Contact (full width, centered) ───────────────────────────── */}
       {hasContact && (
         <div className="container">
-          <Spacing lg="52" md="38" />
+          <Spacing lg="50" md="40" />
           <div style={{ borderTop: '1px solid #eaeaea', borderBottom: '1px solid #eaeaea', padding: '40px 0', display: 'flex', flexWrap: 'wrap', gap: '20px 50px', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
             <span style={{ color: '#999', fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2px' }}>Contact &amp; Enquiries</span>
             {event.contactName && (
@@ -366,39 +366,39 @@ export default async function EventDetailPage({ params }) {
       {/* ── Gallery ──────────────────────────────────────────────────── */}
       {hasGallery && (
         <div style={{ backgroundColor: '#080808' }}>
-          <Spacing lg="88" md="60" />
+          <div style={{ height: 'clamp(60px, 8vw, 88px)' }} />
           <div className="container" style={{ textAlign: 'center' }}>
             <p style={{ color: 'var(--accent)', fontSize: '11px', fontWeight: 700, letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '14px' }}>Moments</p>
             <h2 className="cs-primary_font" style={{ color: '#fff', fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: 400, margin: 0 }}>Event Gallery</h2>
           </div>
-          <Spacing lg="52" md="36" />
+          <div style={{ height: 'clamp(32px, 4vw, 52px)' }} />
           <GalleryGrid images={event.gallery} eventTitle={event.title} />
-          <Spacing lg="88" md="80" />
+          <div style={{ height: 'clamp(60px, 8vw, 88px)' }} />
         </div>
       )}
 
       {/* ── FAQ ──────────────────────────────────────────────────────── */}
       {hasFaq && (
         <Div className="cs-light_mode">
-          <Spacing lg="66" md="44" />
+          <Spacing lg="65" md="45" />
           <div className="container">
             <SectionHeading subtitle="Good to Know" title="Frequently Asked Questions" variant="cs-style1 text-center" />
-            <Spacing lg="40" md="26" />
+            <Spacing lg="40" md="25" />
             <div className="row justify-content-center">
               <div className="col-lg-9">
                 <Accordion data={event.faq} />
               </div>
             </div>
           </div>
-          <Spacing lg="66" md="44" />
+          <Spacing lg="65" md="45" />
         </Div>
       )}
 
       {/* ── CTA ──────────────────────────────────────────────────────── */}
       <div className="container">
-        <Spacing lg="80" md="80" />
+        <div style={{ height: 'clamp(72px, 10vw, 80px)' }} />
         <Cta title="Have questions about this event? <br />Reach out to the SLAHAB team." btnText="Contact Us" btnLink="/contact" bgSrc="/images/cta_bg.jpeg" />
-        <Spacing lg="100" md="88" />
+        <div style={{ height: 'clamp(80px, 12vw, 100px)' }} />
       </div>
 
       {/* Floating conversion CTA — appears once the form scrolls out of view */}
