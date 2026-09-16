@@ -30,7 +30,8 @@ const accordionData = [
   },
 ];
 
-export default function Accordion() {
+export default function Accordion({ data }) {
+  const items = data && data.length ? data : accordionData;
   const [selected, setSelected] = useState(0);
   const handelToggle = index => {
     if (selected === index) {
@@ -41,7 +42,7 @@ export default function Accordion() {
 
   return (
     <Div className="cs-accordians cs-style1">
-      {accordionData.map((item, index) => (
+      {items.map((item, index) => (
         <Div
           className={`cs-accordian ${selected === index ? 'active' : ''}`}
           key={index}

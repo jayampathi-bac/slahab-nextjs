@@ -175,6 +175,38 @@ export const Events: CollectionConfig = {
       ],
     },
     {
+      name: 'included',
+      type: 'array',
+      label: "What's Included (feature highlights)",
+      admin: {
+        description: 'Shown as icon feature boxes below the program. e.g. "3 Nights Accommodation".',
+      },
+      fields: [
+        { name: 'title', type: 'text', required: true, label: 'Title' },
+        { name: 'description', type: 'text', label: 'Short description' },
+      ],
+    },
+    {
+      name: 'gallery',
+      type: 'array',
+      label: 'Photo Gallery',
+      admin: { description: 'Optional. Shown as a gallery grid on the event page.' },
+      fields: [
+        { name: 'image', type: 'upload', relationTo: 'media', required: true },
+        { name: 'caption', type: 'text', label: 'Caption (optional)' },
+      ],
+    },
+    {
+      name: 'faq',
+      type: 'array',
+      label: 'Frequently Asked Questions',
+      admin: { description: 'Optional. Shown as an accordion near the bottom of the event page.' },
+      fields: [
+        { name: 'question', type: 'text', required: true },
+        { name: 'answer', type: 'textarea', required: true },
+      ],
+    },
+    {
       name: 'registrationLink',
       type: 'text',
       admin: { description: 'External registration URL (optional, overrides the built-in form)' },

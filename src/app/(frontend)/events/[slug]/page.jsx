@@ -1,10 +1,14 @@
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
 import Div from '@/app/ui/Div'
 import Spacing from '@/app/ui/Spacing'
+import SectionHeading from '@/app/ui/SectionHeading'
+import Cta from '@/app/ui/Cta'
+import Accordion from '@/app/ui/Accordion'
 import RegisterForm from './RegisterForm'
+import FloatingRegisterCta from './FloatingRegisterCta'
+import GalleryGrid from './GalleryGrid'
 import Icon from '@/app/ui/Icon'
 
 export const dynamic = 'force-dynamic'
@@ -55,6 +59,15 @@ function formatDateRange(date, endDate) {
   return `${formatDate(date, { day: 'numeric', month: 'short' })} – ${formatDate(endDate)}`
 }
 
+const INCLUDED_ICONS = [
+  'ph:bed-light',
+  'ph:coffee-light',
+  'ph:ticket-light',
+  'ph:gift-light',
+  'ph:certificate-light',
+  'ph:users-three-light',
+]
+
 export default async function EventDetailPage({ params }) {
   const { slug } = await params
   const payload = await getPayload({ config })
@@ -63,79 +76,66 @@ export default async function EventDetailPage({ params }) {
     collection: 'events',
     where: { slug: { equals: slug } },
     limit: 1,
+    depth: 2,
   })
 
   if (!docs.length) notFound()
 
   const event = docs[0]
+  const isPast = event.status === 'past'
   const dateRange = formatDateRange(event.date, event.endDate)
   const imageUrl = event.featuredImage?.url ?? '/images/slahab/Poster 1.jpg'
 
   const hasProgram = event.program && event.program.length > 0
   const hasPricing = event.pricingTiers && event.pricingTiers.length > 0
+  const hasIncluded = event.included && event.included.length > 0
+  const hasGallery = event.gallery && event.gallery.length > 0
+  const hasFaq = event.faq && event.faq.length > 0
+  const hasContact = event.contactName || event.contactEmail || event.contactPhone
+
+  // Derived stats for the highlight strip
+  const days = hasProgram ? event.program.length : 0
+  const sessions = hasProgram
+    ? event.program.reduce((n, d) => n + (d.activities?.length || 0), 0)
+    : 0
+  const packages = hasPricing ? event.pricingTiers.length : 0
+  const stats = [
+    days && { value: String(days), label: days === 1 ? 'Day' : 'Days' },
+    sessions && { value: `${sessions}`, label: 'Sessions' },
+    packages && { value: String(packages), label: packages === 1 ? 'Package' : 'Packages' },
+    { value: '1996', label: 'Established' },
+  ].filter(Boolean)
 
   return (
-    <div style={{ backgroundColor: '#fff' }}>
-      {/* Editorial Hero Banner */}
-      <div
-        style={{
-          position: 'relative',
-          height: '75vh',
-          minHeight: '600px',
-          overflow: 'hidden',
-          display: 'flex',
-          alignItems: 'flex-end',
-        }}
-      >
-        <img
-          src={imageUrl}
-          alt={event.title}
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-          }}
-        />
-        {/* Dark sophisticated gradient */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.4) 50%, transparent 100%)',
-          }}
-        />
-        <div className="container" style={{ position: 'relative', zIndex: 2, paddingBottom: '80px' }}>
+    <div className="slahab-event-page" style={{ backgroundColor: '#fff' }}>
+      <style>{`
+        .slahab-event-page .cs-section_subtitle {
+          color: var(--accent) !important;
+          font-size: 12px !important;
+          font-weight: 700;
+          letter-spacing: 3px;
+          text-transform: uppercase;
+          margin-bottom: 14px !important;
+        }
+        .slahab-event-page .cs-section_title {
+          font-size: 42px;
+          line-height: 1.2;
+        }
+        @media (max-width: 991px) {
+          .slahab-event-page .cs-section_title { font-size: 32px; }
+        }
+      `}</style>
+      {/* ── Editorial Hero ──────────────────────────────────────────── */}
+      <div style={{ position: 'relative', height: '78vh', minHeight: '620px', overflow: 'hidden', display: 'flex', alignItems: 'flex-end' }}>
+        <img src={imageUrl} alt={event.title} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.45) 48%, rgba(10,10,10,0.15) 100%)' }} />
+        <div className="container" style={{ position: 'relative', zIndex: 2, paddingBottom: '84px' }}>
           {event.tag && (
-            <span
-              className="cs-primary_font"
-              style={{
-                display: 'inline-block',
-                border: '1px solid var(--accent)',
-                color: 'var(--accent)',
-                fontSize: '11px',
-                fontWeight: 600,
-                textTransform: 'uppercase',
-                letterSpacing: '3px',
-                padding: '8px 20px',
-                marginBottom: '24px',
-              }}
-            >
+            <span className="cs-primary_font" style={{ display: 'inline-block', border: '1px solid var(--accent)', color: 'var(--accent)', fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '3px', padding: '8px 20px', marginBottom: '24px' }}>
               {event.tag}
             </span>
           )}
-          <h1
-            className="cs-primary_font"
-            style={{
-              color: '#fff',
-              fontSize: 'clamp(36px, 6vw, 72px)',
-              fontWeight: 400,
-              lineHeight: 1.1,
-              maxWidth: '900px',
-              marginBottom: '32px',
-            }}
-          >
+          <h1 className="cs-primary_font" style={{ color: '#fff', fontSize: 'clamp(36px, 6vw, 74px)', fontWeight: 400, lineHeight: 1.08, maxWidth: '960px', marginBottom: '32px' }}>
             {event.title}
           </h1>
           <div style={{ display: 'flex', gap: '40px', flexWrap: 'wrap', color: '#eaeaea', fontSize: '15px', fontWeight: 300, letterSpacing: '1px' }}>
@@ -155,400 +155,262 @@ export default async function EventDetailPage({ params }) {
         </div>
       </div>
 
-      {/* Main Content */}
-      <Div>
-        <Spacing lg="100" md="60" />
+      {/* ── Overview + stat strip ────────────────────────────────────── */}
+      <Div className="cs-light_mode">
+        <Spacing lg="80" md="52" />
         <div className="container">
-          <div className="row">
-            {/* Left: Details */}
-            <div className="col-lg-7">
-              {/* Refined Horizontal Info Bar */}
-              <div
-                style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  gap: '40px',
-                  marginBottom: '60px',
-                  paddingBottom: '40px',
-                  borderBottom: '1px solid #eaeaea',
-                }}
-              >
-                {dateRange && (
-                  <InfoBlock icon="ph:calendar-blank-light" label="Dates" value={dateRange} />
+          <div className="row align-items-center">
+            <div className="col-lg-6">
+              <SectionHeading subtitle="About the Event" title="An unmissable international gathering">
+                <Spacing lg="30" md="20" />
+                {event.excerpt && (
+                  <p style={{ color: '#4a4a4a', fontSize: '18px', lineHeight: 1.9, fontWeight: 400, margin: 0 }}>{event.excerpt}</p>
                 )}
-                {event.location && (
-                  <InfoBlock icon="ph:map-pin-light" label="Venue" value={event.location} />
-                )}
-                {hasPricing && (
-                  <InfoBlock
-                    icon="ph:currency-eur-light"
-                    label="Starting From"
-                    value={event.pricingTiers[event.pricingTiers.length - 1]?.price ?? ''}
-                  />
-                )}
-                {event.registrationDeadline && (
-                  <InfoBlock
-                    icon="ph:clock-light"
-                    label="Register By"
-                    value={formatDate(event.registrationDeadline)}
-                  />
-                )}
-              </div>
-
-              {/* Description */}
-              {event.excerpt && (
-                <p
-                  style={{
-                    fontSize: '19px',
-                    color: '#333',
-                    lineHeight: 1.9,
-                    fontWeight: 300,
-                    marginBottom: '60px',
-                  }}
-                >
-                  {event.excerpt}
-                </p>
-              )}
-
-              {/* Program Schedule - Editorial Vertical Timeline */}
-              {hasProgram && (
-                <div style={{ marginBottom: '80px' }}>
-                  <h2
-                    className="cs-primary_font"
-                    style={{
-                      fontSize: '32px',
-                      fontWeight: 400,
-                      color: '#111',
-                      marginBottom: '40px',
-                      letterSpacing: '1px',
-                    }}
-                  >
-                    Event Program
-                  </h2>
-                  <div style={{ position: 'relative', borderLeft: '1px solid var(--accent)', paddingLeft: '40px' }}>
-                    {event.program.map((day, di) => (
-                      <div key={di} style={{ marginBottom: di === event.program.length - 1 ? '0' : '60px' }}>
-                        <div
-                          style={{
-                            position: 'absolute',
-                            left: '-6px',
-                            width: '11px',
-                            height: '11px',
-                            backgroundColor: 'var(--accent)',
-                            borderRadius: '50%',
-                            marginTop: '8px',
-                          }}
-                        />
-                        <div style={{ marginBottom: '24px' }}>
-                          <h3 className="cs-primary_font" style={{ color: '#111', fontSize: '22px', fontWeight: 600, margin: '0 0 4px 0' }}>
-                            {day.dayTitle}
-                          </h3>
-                          {day.dayDate && (
-                            <span style={{ color: 'var(--accent)', fontSize: '13px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px' }}>
-                              {formatDate(day.dayDate, { day: 'numeric', month: 'long' })}
-                            </span>
-                          )}
-                        </div>
-                        
-                        {day.activities && day.activities.length > 0 && (
-                          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-                            {day.activities.map((act, ai) => (
-                              <div key={ai} style={{ display: 'flex', gap: '30px' }}>
-                                {act.time && (
-                                  <div
-                                    style={{
-                                      minWidth: '100px',
-                                      color: '#888',
-                                      fontSize: '13px',
-                                      fontWeight: 500,
-                                      letterSpacing: '1px',
-                                      paddingTop: '3px',
-                                    }}
-                                  >
-                                    {act.time}
-                                  </div>
-                                )}
-                                <div>
-                                  <h4
-                                    style={{
-                                      fontWeight: 600,
-                                      color: '#222',
-                                      fontSize: '16px',
-                                      marginBottom: act.description ? '8px' : 0,
-                                    }}
-                                  >
-                                    {act.title}
-                                  </h4>
-                                  {act.description && (
-                                    <p style={{ color: '#666', fontSize: '15px', lineHeight: 1.7, margin: 0, fontWeight: 300 }}>
-                                      {act.description}
-                                    </p>
-                                  )}
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
+                <Spacing lg="30" md="24" />
+                <Div className="cs-separator cs-accent_bg" />
+                <Spacing lg="30" md="24" />
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '26px' }}>
+                  <QuickFact icon="ph:calendar-blank-light" label="Dates" value={dateRange} />
+                  <QuickFact icon="ph:map-pin-light" label="Venue" value={event.location} />
+                  {hasPricing && <QuickFact icon="ph:tag-light" label="Starting From" value={event.pricingTiers[event.pricingTiers.length - 1]?.price} />}
+                  {event.registrationDeadline && <QuickFact icon="ph:clock-light" label="Register By" value={formatDate(event.registrationDeadline)} />}
                 </div>
-              )}
-
-              {/* Pricing Tiers - Minimalist Luxury Cards */}
-              {hasPricing && (
-                <div style={{ marginBottom: '80px' }}>
-                  <h2
-                    className="cs-primary_font"
-                    style={{
-                      fontSize: '32px',
-                      fontWeight: 400,
-                      color: '#111',
-                      marginBottom: '40px',
-                      letterSpacing: '1px',
-                    }}
-                  >
-                    Pricing Packages
-                  </h2>
-                  <div
-                    style={{
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-                      gap: '30px',
-                    }}
-                  >
-                    {event.pricingTiers.map((tier, ti) => (
-                      <div
-                        key={ti}
-                        style={{
-                          border: ti === 0 ? '1px solid var(--accent)' : '1px solid #ececec',
-                          borderRadius: '14px',
-                          padding: '44px 30px',
-                          position: 'relative',
-                          background: ti === 0 ? 'linear-gradient(180deg, #fffdf7 0%, #ffffff 100%)' : '#fff',
-                          textAlign: 'center',
-                          boxShadow: ti === 0
-                            ? '0 26px 54px -22px rgba(194,155,87,0.38), 0 4px 14px rgba(0,0,0,0.05)'
-                            : '0 20px 44px -26px rgba(0,0,0,0.2)',
-                        }}
-                      >
-                        {ti === 0 && (
-                          <div
-                            style={{
-                              position: 'absolute',
-                              top: 0,
-                              left: '50%',
-                              transform: 'translate(-50%, -50%)',
-                              backgroundColor: '#fff',
-                              padding: '0 10px',
-                            }}
-                          >
-                            <span
-                              style={{
-                                color: 'var(--accent)',
-                                fontSize: '10px',
-                                fontWeight: 700,
-                                textTransform: 'uppercase',
-                                letterSpacing: '2px',
-                              }}
-                            >
-                              Popular
-                            </span>
-                          </div>
-                        )}
-                        <h3
-                          style={{
-                            fontSize: '15px',
-                            fontWeight: 600,
-                            color: '#111',
-                            textTransform: 'uppercase',
-                            letterSpacing: '2px',
-                            marginBottom: '20px',
-                          }}
-                        >
-                          {tier.name}
-                        </h3>
-                        <p
-                          className="cs-primary_font"
-                          style={{
-                            fontSize: '36px',
-                            fontWeight: 400,
-                            color: 'var(--accent)',
-                            marginBottom: '20px',
-                          }}
-                        >
-                          {tier.price}
-                        </p>
-                        {tier.includes && (
-                          <p style={{ color: '#666', fontSize: '14px', lineHeight: 1.8, fontWeight: 300 }}>
-                            {tier.includes}
-                          </p>
-                        )}
-                      </div>
-                    ))}
+              </SectionHeading>
+            </div>
+            <div className="col-lg-5 offset-lg-1" style={{ position: 'relative', marginTop: '20px' }}>
+              <img src={imageUrl} alt={event.title} className="cs-radius_15" style={{ width: '100%', height: '480px', objectFit: 'cover', objectPosition: 'top center', boxShadow: '0 30px 60px rgba(0,0,0,0.14)' }} />
+              {(event.tag || event.location) && (
+                <div style={{ position: 'absolute', bottom: '-26px', left: '-26px', background: 'linear-gradient(165deg, #26221b, #0d0b08)', padding: '22px 28px', borderRadius: '14px', border: '1px solid rgba(194,155,87,0.45)', boxShadow: '0 24px 50px rgba(0,0,0,0.35)', zIndex: 10, maxWidth: '260px' }}>
+                  <div style={{ color: 'var(--accent)', fontSize: '10px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' }}>
+                    {event.tag || 'Hosted by SLAHAB'}
                   </div>
-                </div>
-              )}
-
-              {/* Contact Block - Sophisticated Minimal */}
-              {(event.contactName || event.contactEmail || event.contactPhone) && (
-                <div style={{ padding: '40px 0', borderTop: '1px solid #eaeaea', borderBottom: '1px solid #eaeaea', marginBottom: '60px' }}>
-                  <h3 className="cs-primary_font" style={{ fontSize: '22px', fontWeight: 400, color: '#111', marginBottom: '24px' }}>
-                    Contact & Enquiries
-                  </h3>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                    {event.contactName && (
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                        <Icon icon="ph:user-light" style={{ fontSize: '18px', color: 'var(--accent)' }} />
-                        <span style={{ color: '#444', fontWeight: 300, fontSize: '15px' }}>{event.contactName}</span>
-                      </div>
-                    )}
-                    {event.contactPhone && (
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                        <Icon icon="ph:phone-light" style={{ fontSize: '18px', color: 'var(--accent)' }} />
-                        <a href={`tel:${event.contactPhone}`} style={{ color: '#444', fontWeight: 300, fontSize: '15px', textDecoration: 'none' }}>
-                          {event.contactPhone}
-                        </a>
-                      </div>
-                    )}
-                    {event.contactEmail && (
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                        <Icon icon="ph:envelope-simple-light" style={{ fontSize: '18px', color: 'var(--accent)' }} />
-                        <a href={`mailto:${event.contactEmail}`} style={{ color: '#444', fontWeight: 300, fontSize: '15px', textDecoration: 'none' }}>
-                          {event.contactEmail}
-                        </a>
-                      </div>
-                    )}
+                  <div style={{ marginTop: '7px', color: '#ffffff', fontSize: '15px', fontWeight: 500 }}>
+                    {event.location?.split(',')[0] || 'Colombo, Sri Lanka'}
                   </div>
                 </div>
               )}
             </div>
+          </div>
+        </div>
+        {!isPast && stats.length > 1 && (
+          <>
+            <Spacing lg="58" md="38" />
+            <div className="container">
+              <div style={{ background: 'linear-gradient(165deg, #1a1713 0%, #0b0a08 100%)', borderRadius: '18px', padding: '56px 40px', border: '1px solid rgba(194,155,87,0.2)', boxShadow: '0 40px 80px -30px rgba(0,0,0,0.4)' }}>
+                <div className="cs-event_stats" style={{ display: 'grid', gridTemplateColumns: `repeat(${stats.length}, 1fr)`, gap: '24px', textAlign: 'center' }}>
+                  {stats.map((s, i) => (
+                    <div key={i}>
+                      <div className="cs-primary_font" style={{ color: 'var(--accent)', fontSize: 'clamp(34px, 4vw, 52px)', fontWeight: 500, lineHeight: 1 }}>{s.value}</div>
+                      <div style={{ color: '#b7b2a8', fontSize: '12px', fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase', marginTop: '12px' }}>{s.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+        <Spacing lg="80" md="52" />
+      </Div>
 
-            {/* Right: Registration Form */}
+      {/* ── Program / Description + registration sidebar ─────────────── */}
+      {(hasProgram || !isPast) && (
+      <div className="container">
+        <Spacing lg="72" md="48" />
+        <div className="row">
+          <div className={hasProgram ? 'col-lg-7' : 'col-lg-8'}>
+            {hasProgram && (
+              <>
+                <SectionHeading subtitle="Day by Day" title="Event Program" />
+                <Spacing lg="45" md="30" />
+                <div style={{ position: 'relative', borderLeft: '1px solid var(--accent)', paddingLeft: '40px' }}>
+                  {event.program.map((day, di) => (
+                    <div key={di} style={{ marginBottom: di === event.program.length - 1 ? '0' : '60px' }}>
+                      <div style={{ position: 'absolute', left: '-6px', width: '11px', height: '11px', backgroundColor: 'var(--accent)', borderRadius: '50%', marginTop: '8px' }} />
+                      <div style={{ marginBottom: '24px' }}>
+                        <h3 className="cs-primary_font" style={{ color: '#111', fontSize: '22px', fontWeight: 600, margin: '0 0 4px 0' }}>{day.dayTitle}</h3>
+                        {day.dayDate && (
+                          <span style={{ color: 'var(--accent)', fontSize: '13px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px' }}>
+                            {formatDate(day.dayDate, { day: 'numeric', month: 'long' })}
+                          </span>
+                        )}
+                      </div>
+                      {day.activities && day.activities.length > 0 && (
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                          {day.activities.map((act, ai) => (
+                            <div key={ai} style={{ display: 'flex', gap: '30px' }}>
+                              {act.time && <div style={{ minWidth: '100px', color: '#888', fontSize: '13px', fontWeight: 500, letterSpacing: '1px', paddingTop: '3px' }}>{act.time}</div>}
+                              <div>
+                                <h4 style={{ fontWeight: 600, color: '#222', fontSize: '16px', marginBottom: act.description ? '8px' : 0 }}>{act.title}</h4>
+                                {act.description && <p style={{ color: '#666', fontSize: '15px', lineHeight: 1.7, margin: 0, fontWeight: 300 }}>{act.description}</p>}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+
+          {/* Sticky registration form — hidden for past events */}
+          {!isPast && (
             <div className="col-lg-4 offset-lg-1">
-              <div
-                style={{
-                  position: 'sticky',
-                  top: '120px',
-                  background: 'linear-gradient(165deg, #201d18 0%, #121110 50%, #0a0908 100%)',
-                  padding: '46px 40px',
-                  borderRadius: '16px',
-                  border: '1px solid rgba(194,155,87,0.28)',
-                  boxShadow:
-                    '0 40px 80px -24px rgba(0,0,0,0.75), 0 8px 24px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06), inset 0 0 0 1px rgba(194,155,87,0.04)',
-                  overflow: 'hidden',
-                }}
-              >
-                {/* Gold top accent glow */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    height: '3px',
-                    background: 'linear-gradient(90deg, transparent, var(--accent), transparent)',
-                  }}
-                />
-                <div
-                  aria-hidden
-                  style={{
-                    position: 'absolute',
-                    top: '-120px',
-                    right: '-120px',
-                    width: '260px',
-                    height: '260px',
-                    background: 'radial-gradient(circle, rgba(194,155,87,0.14) 0%, transparent 70%)',
-                    pointerEvents: 'none',
-                  }}
-                />
-
+              <div id="event-register" style={{ position: 'sticky', top: '120px', background: 'linear-gradient(165deg, #201d18 0%, #121110 50%, #0a0908 100%)', padding: '46px 40px', borderRadius: '16px', border: '1px solid rgba(194,155,87,0.28)', boxShadow: '0 40px 80px -24px rgba(0,0,0,0.75), 0 8px 24px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06), inset 0 0 0 1px rgba(194,155,87,0.04)', overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: 'linear-gradient(90deg, transparent, var(--accent), transparent)' }} />
+                <div aria-hidden style={{ position: 'absolute', top: '-120px', right: '-120px', width: '260px', height: '260px', background: 'radial-gradient(circle, rgba(194,155,87,0.14) 0%, transparent 70%)', pointerEvents: 'none' }} />
                 <div style={{ position: 'relative' }}>
-                  <span
-                    className="cs-primary_font"
-                    style={{
-                      display: 'block',
-                      color: 'var(--accent)',
-                      fontSize: '10px',
-                      fontWeight: 700,
-                      textTransform: 'uppercase',
-                      letterSpacing: '3px',
-                      marginBottom: '14px',
-                    }}
-                  >
-                    Registration
-                  </span>
-                  <h2
-                    className="cs-primary_font"
-                    style={{
-                      color: '#fff',
-                      fontSize: '30px',
-                      fontWeight: 500,
-                      marginBottom: '12px',
-                      letterSpacing: '0.5px',
-                    }}
-                  >
-                    Reserve Your Spot
-                  </h2>
+                  <span className="cs-primary_font" style={{ display: 'block', color: 'var(--accent)', fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '3px', marginBottom: '14px' }}>Registration</span>
+                  <h2 className="cs-primary_font" style={{ color: '#fff', fontSize: '30px', fontWeight: 500, marginBottom: '12px', letterSpacing: '0.5px' }}>Reserve Your Spot</h2>
                   <p style={{ color: '#a7a29a', fontSize: '14px', fontWeight: 300, lineHeight: 1.7, marginBottom: '32px' }}>
                     Secure your place at this exclusive gathering. Complete the form below to register and pay.
                   </p>
-
-                {event.registrationLink ? (
-                  <div style={{ textAlign: 'center' }}>
-                    <p style={{ color: '#ccc', marginBottom: '24px', fontSize: '14px', fontWeight: 300 }}>
-                      Registration is handled via our official portal.
-                    </p>
-                    <a
-                      href={isSafeUrl(event.registrationLink) ? event.registrationLink : '#'}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        display: 'inline-block',
-                        backgroundColor: 'var(--accent)',
-                        color: '#000',
-                        fontSize: '13px',
-                        fontWeight: 600,
-                        textTransform: 'uppercase',
-                        letterSpacing: '2px',
-                        padding: '16px 32px',
-                        textDecoration: 'none',
-                        transition: 'opacity 0.3s',
-                      }}
-                    >
-                      Register Now
-                    </a>
-                  </div>
-                ) : (
-                  <RegisterForm
-                    eventId={String(event.id)}
-                    eventSlug={event.slug}
-                    pricingTiers={event.pricingTiers}
-                  />
-                )}
+                  {event.registrationLink ? (
+                    <div style={{ textAlign: 'center' }}>
+                      <p style={{ color: '#ccc', marginBottom: '24px', fontSize: '14px', fontWeight: 300 }}>Registration is handled via our official portal.</p>
+                      <a href={isSafeUrl(event.registrationLink) ? event.registrationLink : '#'} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', backgroundColor: 'var(--accent)', color: '#000', fontSize: '13px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '2px', padding: '16px 32px', textDecoration: 'none' }}>
+                        Register Now
+                      </a>
+                    </div>
+                  ) : (
+                    <RegisterForm eventId={String(event.id)} eventSlug={event.slug} pricingTiers={event.pricingTiers} />
+                  )}
                 </div>
+              </div>
+            </div>
+          )}
+        </div>
+        <Spacing lg="72" md="48" />
+      </div>
+      )}
+
+      {/* ── What's Included (full width) ─────────────────────────────── */}
+      {hasIncluded && (
+        <Div className="cs-light_mode" style={{ backgroundColor: '#fcfcfc' }}>
+          <Spacing lg="66" md="44" />
+          <div className="container">
+            <SectionHeading subtitle="Your Experience" title="What's Included" variant="cs-style1 text-center" />
+            <Spacing lg="44" md="28" />
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px' }}>
+              {event.included.map((item, ii) => (
+                <div key={ii} style={{ border: '1px solid #ececec', borderRadius: '14px', padding: '36px 30px', background: '#fff', boxShadow: '0 16px 40px -26px rgba(0,0,0,0.18)', textAlign: 'center' }}>
+                  <Icon icon={INCLUDED_ICONS[ii % INCLUDED_ICONS.length]} style={{ fontSize: '40px', color: 'var(--accent)' }} />
+                  <h4 style={{ color: '#111', fontSize: '17px', fontWeight: 600, margin: '20px 0 8px' }}>{item.title}</h4>
+                  {item.description && <p style={{ color: '#666', fontSize: '14px', lineHeight: 1.7, margin: 0, fontWeight: 300 }}>{item.description}</p>}
+                </div>
+              ))}
+            </div>
+          </div>
+          <Spacing lg="66" md="44" />
+        </Div>
+      )}
+
+      {/* ── Pricing (full width, centered) ───────────────────────────── */}
+      {hasPricing && (
+        <div className="container">
+          <Spacing lg="66" md="44" />
+          <SectionHeading subtitle="Packages" title="Pricing Packages" variant="cs-style1 text-center" />
+          <Spacing lg="44" md="28" />
+          <div className="row justify-content-center">
+            <div className="col-lg-9">
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '30px' }}>
+                {event.pricingTiers.map((tier, ti) => (
+                  <div key={ti} style={{ border: ti === 0 ? '1px solid var(--accent)' : '1px solid #ececec', borderRadius: '14px', padding: '48px 34px', position: 'relative', background: ti === 0 ? 'linear-gradient(180deg, #fffdf7 0%, #ffffff 100%)' : '#fff', textAlign: 'center', boxShadow: ti === 0 ? '0 26px 54px -22px rgba(194,155,87,0.38), 0 4px 14px rgba(0,0,0,0.05)' : '0 20px 44px -26px rgba(0,0,0,0.2)' }}>
+                    {ti === 0 && (
+                      <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: '#fff', padding: '0 10px' }}>
+                        <span style={{ color: 'var(--accent)', fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2px' }}>Popular</span>
+                      </div>
+                    )}
+                    <h3 style={{ fontSize: '15px', fontWeight: 600, color: '#111', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '20px' }}>{tier.name}</h3>
+                    <p className="cs-primary_font" style={{ fontSize: '38px', fontWeight: 400, color: 'var(--accent)', marginBottom: '20px' }}>{tier.price}</p>
+                    {tier.includes && <p style={{ color: '#666', fontSize: '14px', lineHeight: 1.8, fontWeight: 300 }}>{tier.includes}</p>}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
-        <Spacing lg="120" md="80" />
-      </Div>
+      )}
+
+      {/* ── Contact (full width, centered) ───────────────────────────── */}
+      {hasContact && (
+        <div className="container">
+          <Spacing lg="52" md="38" />
+          <div style={{ borderTop: '1px solid #eaeaea', borderBottom: '1px solid #eaeaea', padding: '40px 0', display: 'flex', flexWrap: 'wrap', gap: '20px 50px', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+            <span style={{ color: '#999', fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2px' }}>Contact &amp; Enquiries</span>
+            {event.contactName && (
+              <span style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#444', fontWeight: 300, fontSize: '15px' }}>
+                <Icon icon="ph:user-light" style={{ fontSize: '18px', color: 'var(--accent)' }} />{event.contactName}
+              </span>
+            )}
+            {event.contactPhone && (
+              <a href={`tel:${event.contactPhone}`} style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#444', fontWeight: 300, fontSize: '15px', textDecoration: 'none' }}>
+                <Icon icon="ph:phone-light" style={{ fontSize: '18px', color: 'var(--accent)' }} />{event.contactPhone}
+              </a>
+            )}
+            {event.contactEmail && (
+              <a href={`mailto:${event.contactEmail}`} style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#444', fontWeight: 300, fontSize: '15px', textDecoration: 'none' }}>
+                <Icon icon="ph:envelope-simple-light" style={{ fontSize: '18px', color: 'var(--accent)' }} />{event.contactEmail}
+              </a>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* ── Gallery ──────────────────────────────────────────────────── */}
+      {hasGallery && (
+        <div style={{ backgroundColor: '#080808' }}>
+          <Spacing lg="88" md="60" />
+          <div className="container" style={{ textAlign: 'center' }}>
+            <p style={{ color: 'var(--accent)', fontSize: '11px', fontWeight: 700, letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '14px' }}>Moments</p>
+            <h2 className="cs-primary_font" style={{ color: '#fff', fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: 400, margin: 0 }}>Event Gallery</h2>
+          </div>
+          <Spacing lg="52" md="36" />
+          <GalleryGrid images={event.gallery} eventTitle={event.title} />
+          <Spacing lg="88" md="60" />
+        </div>
+      )}
+
+      {/* ── FAQ ──────────────────────────────────────────────────────── */}
+      {hasFaq && (
+        <Div className="cs-light_mode">
+          <Spacing lg="66" md="44" />
+          <div className="container">
+            <SectionHeading subtitle="Good to Know" title="Frequently Asked Questions" variant="cs-style1 text-center" />
+            <Spacing lg="40" md="26" />
+            <div className="row justify-content-center">
+              <div className="col-lg-9">
+                <Accordion data={event.faq} />
+              </div>
+            </div>
+          </div>
+          <Spacing lg="66" md="44" />
+        </Div>
+      )}
+
+      {/* ── CTA ──────────────────────────────────────────────────────── */}
+      <div className="container">
+        <Spacing lg="80" md="52" />
+        <Cta title="Have questions about this event? <br />Reach out to the SLAHAB team." btnText="Contact Us" btnLink="/contact" bgSrc="/images/cta_bg.jpeg" />
+        <Spacing lg="100" md="72" />
+      </div>
+
+      {/* Floating conversion CTA — appears once the form scrolls out of view */}
+      {!isPast && !event.registrationLink && <FloatingRegisterCta />}
     </div>
   )
 }
 
-function InfoBlock({ icon, label, value }) {
+function QuickFact({ icon, label, value }) {
+  if (!value) return null
   return (
     <div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
-        <Icon icon={icon} style={{ fontSize: '22px', color: 'var(--accent)' }} />
-        <span style={{ color: '#888', fontSize: '10px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '2px' }}>
-          {label}
-        </span>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
+        <Icon icon={icon} style={{ fontSize: '20px', color: 'var(--accent)' }} />
+        <span style={{ color: '#999', fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2px' }}>{label}</span>
       </div>
-      <p className="cs-primary_font" style={{ color: '#111', fontSize: '20px', margin: 0 }}>
-        {value}
-      </p>
+      <div className="cs-primary_font" style={{ color: '#141414', fontSize: '18px' }}>{value}</div>
     </div>
   )
 }

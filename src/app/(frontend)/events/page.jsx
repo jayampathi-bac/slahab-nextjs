@@ -75,6 +75,14 @@ export default async function EventsPage() {
     limit: 20,
   })
 
+  const { docs: pastEvents } = await payload.find({
+    collection: 'events',
+    where: { status: { equals: 'past' } },
+    sort: '-date',
+    limit: 20,
+    depth: 1,
+  })
+
   return (
     <>
       <style>{`
@@ -372,6 +380,92 @@ export default async function EventsPage() {
             variant="cs-style1 text-center"
           />
           <Spacing lg="80" md="50" />
+
+          {pastEvents.length > 0 && (
+            <>
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+                  gap: '36px',
+                  marginBottom: '64px',
+                }}
+              >
+                {pastEvents.map((event) => {
+                  const imageUrl = event.featuredImage?.url ?? '/images/slahab/blog_awards.jpg'
+                  const dateStr = formatDateRange(event.date, event.endDate)
+                  return (
+                    <Link
+                      key={event.id}
+                      href={`/events/${event.slug}`}
+                      style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column' }}
+                    >
+                      <div
+                        style={{
+                          border: '1px solid #eaeaea',
+                          backgroundColor: '#fff',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
+                          height: '100%',
+                        }}
+                        className="editorial-event-card"
+                      >
+                        <div style={{ position: 'relative', aspectRatio: '16/10', overflow: 'hidden' }}>
+                          <img
+                            src={imageUrl}
+                            alt={event.title}
+                            className="editorial-event-img"
+                            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.6s ease' }}
+                          />
+                          {event.tag && (
+                            <span
+                              className="cs-primary_font"
+                              style={{
+                                position: 'absolute',
+                                bottom: '16px',
+                                left: '16px',
+                                backgroundColor: 'rgba(10,10,10,0.72)',
+                                backdropFilter: 'blur(4px)',
+                                border: '1px solid var(--accent)',
+                                color: 'var(--accent)',
+                                fontSize: '9px',
+                                fontWeight: 600,
+                                textTransform: 'uppercase',
+                                letterSpacing: '2px',
+                                padding: '5px 12px',
+                              }}
+                            >
+                              {event.tag}
+                            </span>
+                          )}
+                        </div>
+                        <div style={{ padding: '28px 28px 32px' }}>
+                          {dateStr && (
+                            <p style={{ color: '#999', fontSize: '10px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '10px' }}>
+                              {dateStr}
+                            </p>
+                          )}
+                          <h3
+                            className="cs-primary_font"
+                            style={{ fontSize: '20px', fontWeight: 400, color: '#111', lineHeight: 1.3, marginBottom: '12px' }}
+                          >
+                            {event.title}
+                          </h3>
+                          {event.location && (
+                            <p style={{ color: '#888', fontSize: '13px', fontWeight: 300, margin: 0 }}>
+                              {event.location}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </Link>
+                  )
+                })}
+              </div>
+            </>
+          )}
+
           <PostSlider data={eventHighlightsData} />
         </Div>
         <Spacing lg="80" md="50" />

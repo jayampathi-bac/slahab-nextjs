@@ -26,7 +26,7 @@ export default buildConfig({
   editor: lexicalEditor(),
   plugins: [
     uploadthingStorage({
-      collections: { media: true },
+      collections: { media: { disablePayloadAccessControl: true } },
       options: {
         token: process.env.UPLOADTHING_TOKEN || '',
         acl: 'public-read',
