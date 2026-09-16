@@ -122,7 +122,12 @@ export default async function EventDetailPage({ params }) {
           line-height: 1.2;
         }
         @media (max-width: 991px) {
-          .slahab-event-page .cs-section_title { font-size: 32px; }
+          .slahab-event-page .cs-section_title { font-size: 30px; }
+          .slahab-overview-image-col { display: none !important; }
+        }
+        @media (max-width: 575px) {
+          .slahab-quickfacts { grid-template-columns: 1fr !important; gap: 18px !important; }
+          .slahab-event-page .cs-section_title { font-size: 26px; }
         }
       `}</style>
       {/* ── Editorial Hero ──────────────────────────────────────────── */}
@@ -169,7 +174,7 @@ export default async function EventDetailPage({ params }) {
                 <Spacing lg="30" md="24" />
                 <Div className="cs-separator cs-accent_bg" />
                 <Spacing lg="30" md="24" />
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '26px' }}>
+                <div className="slahab-quickfacts" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '26px' }}>
                   <QuickFact icon="ph:calendar-blank-light" label="Dates" value={dateRange} />
                   <QuickFact icon="ph:map-pin-light" label="Venue" value={event.location} />
                   {hasPricing && <QuickFact icon="ph:tag-light" label="Starting From" value={event.pricingTiers[event.pricingTiers.length - 1]?.price} />}
@@ -177,7 +182,7 @@ export default async function EventDetailPage({ params }) {
                 </div>
               </SectionHeading>
             </div>
-            <div className="col-lg-5 offset-lg-1" style={{ position: 'relative', marginTop: '20px' }}>
+            <div className="col-lg-5 offset-lg-1 slahab-overview-image-col" style={{ position: 'relative', marginTop: '20px' }}>
               <img src={imageUrl} alt={event.title} className="cs-radius_15" style={{ width: '100%', height: '480px', objectFit: 'cover', objectPosition: 'top center', boxShadow: '0 30px 60px rgba(0,0,0,0.14)' }} />
               {(event.tag || event.location) && (
                 <div style={{ position: 'absolute', bottom: '-26px', left: '-26px', background: 'linear-gradient(165deg, #26221b, #0d0b08)', padding: '22px 28px', borderRadius: '14px', border: '1px solid rgba(194,155,87,0.45)', boxShadow: '0 24px 50px rgba(0,0,0,0.35)', zIndex: 10, maxWidth: '260px' }}>

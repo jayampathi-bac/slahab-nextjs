@@ -114,6 +114,16 @@ export default function GalleryGrid({ images, eventTitle }) {
         .gallery-thumbs::-webkit-scrollbar { height: 3px; }
         .gallery-thumbs::-webkit-scrollbar-track { background: transparent; }
         .gallery-thumbs::-webkit-scrollbar-thumb { background: rgba(194,155,87,0.4); border-radius: 2px; }
+        @media (max-width: 767px) {
+          .gallery-viewer-inner { padding: 0 52px !important; }
+          .gallery-arrow { width: 40px !important; height: 40px !important; }
+          .gallery-arrow-left { left: 8px !important; }
+          .gallery-arrow-right { right: 8px !important; }
+          .gallery-thumb-btn { width: 52px !important; height: 52px !important; }
+        }
+        @media (max-width: 400px) {
+          .gallery-viewer-inner { padding: 0 44px !important; }
+        }
       `}</style>
 
       {/* ── Main viewer ── */}
@@ -131,6 +141,7 @@ export default function GalleryGrid({ images, eventTitle }) {
       >
         {/* Image */}
         <div
+          className="gallery-viewer-inner"
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -148,7 +159,7 @@ export default function GalleryGrid({ images, eventTitle }) {
             style={{
               display: 'block',
               maxWidth: '100%',
-              maxHeight: '80vh',
+              maxHeight: '75vh',
               width: 'auto',
               height: 'auto',
               objectFit: 'contain',
@@ -227,7 +238,7 @@ export default function GalleryGrid({ images, eventTitle }) {
           display: 'flex',
           gap: '6px',
           overflowX: 'auto',
-          padding: '14px 0 10px',
+          padding: '14px 20px 12px',
           scrollbarWidth: 'thin',
           scrollbarColor: 'rgba(194,155,87,0.4) transparent',
           backgroundColor: '#080808',
