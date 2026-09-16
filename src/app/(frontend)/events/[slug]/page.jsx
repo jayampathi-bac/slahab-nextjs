@@ -122,11 +122,48 @@ export default async function EventDetailPage({ params }) {
           line-height: 1.2;
         }
         @media (max-width: 991px) {
-          .slahab-event-page .cs-section_title { font-size: 30px; }
+          .slahab-event-page .cs-section_title { font-size: 30px; line-height: 1.18; }
           .slahab-overview-image-col { display: none !important; }
+
+          /* Gold line before subtitle on mobile */
+          .slahab-event-page .cs-section_subtitle::before {
+            content: '';
+            display: inline-block;
+            width: 22px;
+            height: 2px;
+            background: var(--accent);
+            vertical-align: middle;
+            margin-right: 8px;
+            margin-bottom: 2px;
+          }
+
+          /* Premium entry bar for overview section */
+          .slahab-overview-section {
+            border-top: 2px solid var(--accent);
+            background: linear-gradient(180deg, #faf7f2 0%, #ffffff 100px);
+          }
+
+          /* Premium facts card on mobile */
+          .slahab-quickfacts {
+            display: flex !important;
+            flex-direction: row !important;
+            grid-template-columns: unset !important;
+            gap: 0 !important;
+            border: 1px solid rgba(194,155,87,0.25) !important;
+            border-radius: 16px !important;
+            overflow: hidden;
+            background: linear-gradient(135deg, #fdf9f2 0%, #fff 70%) !important;
+            box-shadow: 0 10px 36px -16px rgba(0,0,0,0.13) !important;
+          }
+          .slahab-quickfacts > div {
+            flex: 1;
+            padding: 18px 16px !important;
+          }
+          .slahab-quickfacts > div:not(:last-child) {
+            border-right: 1px solid rgba(194,155,87,0.25);
+          }
         }
         @media (max-width: 575px) {
-          .slahab-quickfacts { grid-template-columns: 1fr !important; gap: 18px !important; }
           .slahab-event-page .cs-section_title { font-size: 26px; }
         }
       `}</style>
@@ -161,19 +198,19 @@ export default async function EventDetailPage({ params }) {
       </div>
 
       {/* ── Overview + stat strip ────────────────────────────────────── */}
-      <Div className="cs-light_mode">
+      <Div className="cs-light_mode slahab-overview-section">
         <div style={{ height: 'clamp(52px, 8vw, 80px)' }} />
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-6">
               <SectionHeading subtitle="About the Event" title="An unmissable international gathering">
-                <Spacing lg="30" md="20" />
+                <div style={{ height: '24px' }} />
                 {event.excerpt && (
-                  <p style={{ color: '#4a4a4a', fontSize: '18px', lineHeight: 1.9, fontWeight: 400, margin: 0 }}>{event.excerpt}</p>
+                  <p style={{ color: '#4a4a4a', fontSize: 'clamp(16px, 4vw, 18px)', lineHeight: 1.9, fontWeight: 400, margin: 0 }}>{event.excerpt}</p>
                 )}
-                <Spacing lg="30" md="24" />
+                <div style={{ height: '28px' }} />
                 <Div className="cs-separator cs-accent_bg" />
-                <Spacing lg="30" md="24" />
+                <div style={{ height: '28px' }} />
                 <div className="slahab-quickfacts" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '26px' }}>
                   <QuickFact icon="ph:calendar-blank-light" label="Dates" value={dateRange} />
                   <QuickFact icon="ph:map-pin-light" label="Venue" value={event.location} />
