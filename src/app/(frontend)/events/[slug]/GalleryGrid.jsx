@@ -12,12 +12,11 @@ function ChevronIcon({ direction }) {
   )
 }
 
-const AUTOPLAY_MS = 4000
+const AUTOPLAY_MS = 2000
 
 export default function GalleryGrid({ images, eventTitle }) {
   const [current, setCurrent] = useState(0)
   const [visible, setVisible] = useState(true)
-  const [paused, setPaused] = useState(false)
   const thumbsRef = useRef(null)
   const navigating = useRef(false)
 
@@ -47,10 +46,9 @@ export default function GalleryGrid({ images, eventTitle }) {
 
   // Autoplay
   useEffect(() => {
-    if (paused) return
     const id = setTimeout(() => next(), AUTOPLAY_MS)
     return () => clearTimeout(id)
-  }, [current, paused, next])
+  }, [current, next])
 
   // Keep active thumbnail scrolled into view — scroll only the strip, not the page
   useEffect(() => {
@@ -136,8 +134,6 @@ export default function GalleryGrid({ images, eventTitle }) {
           userSelect: 'none',
           overflow: 'hidden',
         }}
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
@@ -200,12 +196,12 @@ export default function GalleryGrid({ images, eventTitle }) {
         {/* Progress bar */}
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '2px', backgroundColor: 'rgba(255,255,255,0.1)' }}>
           <div
-            key={`${current}-${paused}`}
+            key={`${current}`}
             style={{
               height: '100%',
               backgroundColor: 'var(--accent)',
-              width: paused ? '0%' : '100%',
-              transition: paused ? 'none' : `width ${AUTOPLAY_MS}ms linear`,
+              width: '100%',
+              transition: `width ${AUTOPLAY_MS}ms linear`,
             }}
           />
         </div>
