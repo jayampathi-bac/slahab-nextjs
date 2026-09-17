@@ -12,7 +12,7 @@ function ChevronIcon({ direction }) {
   )
 }
 
-const AUTOPLAY_MS = 2000
+const AUTOPLAY_MS = 4000
 
 export default function GalleryGrid({ images, eventTitle }) {
   const [current, setCurrent] = useState(0)
