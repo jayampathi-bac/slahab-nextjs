@@ -351,27 +351,64 @@ export default async function EventDetailPage({ params }) {
       {/* ── Pricing (full width, centered) ───────────────────────────── */}
       {hasPricing && (
         <div className="container">
-          <Spacing lg="66" md="44" />
+          <div style={{ height: 'clamp(52px, 7vw, 66px)' }} />
           <SectionHeading subtitle="Packages" title="Pricing Packages" variant="cs-style1 text-center" />
-          <Spacing lg="44" md="28" />
-          <div className="row justify-content-center">
-            <div className="col-lg-9">
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '30px' }}>
-                {event.pricingTiers.map((tier, ti) => (
-                  <div key={ti} style={{ border: ti === 0 ? '1px solid var(--accent)' : '1px solid #ececec', borderRadius: '14px', padding: '48px 34px', position: 'relative', background: ti === 0 ? 'linear-gradient(180deg, #fffdf7 0%, #ffffff 100%)' : '#fff', textAlign: 'center', boxShadow: ti === 0 ? '0 26px 54px -22px rgba(194,155,87,0.38), 0 4px 14px rgba(0,0,0,0.05)' : '0 20px 44px -26px rgba(0,0,0,0.2)' }}>
+          <div style={{ height: 'clamp(36px, 5vw, 52px)' }} />
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px', maxWidth: '860px', margin: '0 auto' }}>
+            {event.pricingTiers.map((tier, ti) => (
+              <div
+                key={ti}
+                style={{
+                  position: 'relative',
+                  borderRadius: '20px',
+                  padding: ti === 0 ? '0' : '0',
+                  background: ti === 0
+                    ? 'linear-gradient(160deg, #fdf8ee 0%, #fff 100%)'
+                    : '#fafaf8',
+                  border: `1px solid ${ti === 0 ? 'rgba(194,155,87,0.45)' : '#e4e0da'}`,
+                  boxShadow: ti === 0
+                    ? '0 28px 64px -20px rgba(194,155,87,0.22), 0 4px 18px rgba(0,0,0,0.05)'
+                    : '0 12px 40px -18px rgba(0,0,0,0.12)',
+                  overflow: 'hidden',
+                }}
+              >
+                {/* Top accent bar for featured */}
+                {ti === 0 && (
+                  <div style={{ height: '3px', background: 'linear-gradient(90deg, transparent, var(--accent), transparent)' }} />
+                )}
+
+                <div style={{ padding: '40px 36px' }}>
+                  {/* Package label */}
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px' }}>
+                    <span style={{ color: 'var(--accent)', fontSize: '10px', fontWeight: 700, letterSpacing: '3px', textTransform: 'uppercase' }}>
+                      {tier.name}
+                    </span>
                     {ti === 0 && (
-                      <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: '#fff', padding: '0 10px' }}>
-                        <span style={{ color: 'var(--accent)', fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2px' }}>Popular</span>
-                      </div>
+                      <span style={{ background: 'rgba(194,155,87,0.12)', border: '1px solid rgba(194,155,87,0.3)', color: 'var(--accent)', fontSize: '9px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', padding: '4px 10px', borderRadius: '20px' }}>
+                        Popular
+                      </span>
                     )}
-                    <h3 style={{ fontSize: '15px', fontWeight: 600, color: '#111', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '20px' }}>{tier.name}</h3>
-                    <p className="cs-primary_font" style={{ fontSize: '38px', fontWeight: 400, color: 'var(--accent)', marginBottom: '20px' }}>{tier.price}</p>
-                    {tier.includes && <p style={{ color: '#666', fontSize: '14px', lineHeight: 1.8, fontWeight: 300 }}>{tier.includes}</p>}
                   </div>
-                ))}
+
+                  {/* Price / package title */}
+                  <h3 className="cs-primary_font" style={{ fontSize: 'clamp(20px, 2.4vw, 26px)', fontWeight: 500, color: '#111', lineHeight: 1.25, margin: '0 0 20px 0' }}>
+                    {tier.price}
+                  </h3>
+
+                  {/* Gold divider */}
+                  <div style={{ width: '36px', height: '1px', background: 'var(--accent)', marginBottom: '20px' }} />
+
+                  {/* Includes */}
+                  {tier.includes && (
+                    <p style={{ color: '#6b6560', fontSize: '13px', lineHeight: 1.85, fontWeight: 400, margin: 0, letterSpacing: '0.2px' }}>
+                      {tier.includes}
+                    </p>
+                  )}
+                </div>
               </div>
-            </div>
+            ))}
           </div>
+          <div style={{ height: 'clamp(52px, 7vw, 66px)' }} />
         </div>
       )}
 
