@@ -1,6 +1,7 @@
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import HomepageSchema from '@/app/(frontend)/components/HomepageSchema'
+import FaqSection from '@/app/(frontend)/components/FaqSection'
 import EventPopup from '@/app/ui/EventPopup'
 import Cta from '@/app/ui/Cta'
 import Div from '@/app/ui/Div'
@@ -265,6 +266,44 @@ const slahabBlogs = [
 ]
 
 
+const slahabFaqs = [
+  {
+    question: 'What is SLAHAB?',
+    answer:
+      'SLAHAB — the Sri Lanka Association of Hairdressers and Beauticians — is the premier national professional body representing hairdressers, beauticians, and stylists in Sri Lanka. Founded in 1996, SLAHAB has been the driving force behind elevating hair and beauty standards through education, international competitions, and industry recognition.',
+  },
+  {
+    question: 'Where is SLAHAB located in Sri Lanka?',
+    answer:
+      'SLAHAB is based at No 646, Galle Road, Colombo 3, Sri Lanka. You can reach us at +94 770 567 359 or via email at slahab1996@gmail.com. Our office is open to members and industry professionals seeking guidance.',
+  },
+  {
+    question: 'How do I become a member of SLAHAB?',
+    answer:
+      'Membership is open to qualified hairdressers, beauticians, and beauty professionals across Sri Lanka. To apply, visit our Contact page or reach us directly. SLAHAB membership connects you to national events, workshops, international competitions, and a growing network of industry professionals.',
+  },
+  {
+    question: 'What is the SLAHAB National Awards?',
+    answer:
+      'The SLAHAB National Awards is the most prestigious hair and beauty competition in Sri Lanka, celebrating exceptional talent, creativity, and craftsmanship across the country. Held annually, it discovers new talent and sets higher benchmarks for professional excellence in the Sri Lankan industry.',
+  },
+  {
+    question: 'Is SLAHAB affiliated with the OMC (Organisation Mondiale Coiffure)?',
+    answer:
+      'Yes. SLAHAB is the official Sri Lanka representative of the Organisation Mondiale Coiffure (OMC) — the world\'s largest and most influential body for hair and beauty professionals. This affiliation allows Sri Lankan stylists to compete at international stages including the OMC Hairworld Championships.',
+  },
+  {
+    question: 'What is the ICD Sri Lanka chapter?',
+    answer:
+      'The ICD Sri Lanka chapter, operating under SLAHAB, is the local arm of Intercoiffure Mondial (ICD) — the world\'s most exclusive network of high-fashion hairdressing professionals. Led by ICD Sri Lanka President Mayuri Thilakawardana, the chapter connects elite Sri Lankan stylists with global luxury, fashion, and artistry.',
+  },
+  {
+    question: 'What events and programmes does SLAHAB organise?',
+    answer:
+      'SLAHAB organises a wide range of industry events including educational workshops, international masterclasses with global hair experts, the annual National Awards, and training camps to prepare competitors for the OMC Asia Cup and OMC Hairworld Championships. Major upcoming events include the ICD World Congress in Paris.',
+  },
+]
+
 export default async function Home() {
   const payload = await getPayload({ config })
   const { docs: featuredEvents } = await payload.find({
@@ -477,6 +516,24 @@ export default async function Home() {
       <Div className="container">
         <LogoList />
       </Div>
+      <Spacing lg="150" md="80" />
+
+      {/* FAQ */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: slahabFaqs.map((f) => ({
+              '@type': 'Question',
+              name: f.question,
+              acceptedAnswer: { '@type': 'Answer', text: f.answer },
+            })),
+          }),
+        }}
+      />
+      <FaqSection faqs={slahabFaqs} />
       <Spacing lg="150" md="80" />
 
       {/* CTA */}

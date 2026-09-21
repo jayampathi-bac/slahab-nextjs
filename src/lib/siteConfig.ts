@@ -7,7 +7,7 @@ export const siteConfig = {
   foundingYear: '1996',
   logo: '/images/slahab/slahab_crest.png',
   ogImage: '/images/slahab/slahab_share_logo.jpg',
-  facebook: 'https://www.facebook.com/SLAHAB',
+  facebook: 'https://www.facebook.com/slahab.srilanka/',
   address: {
     locality: 'Colombo',
     country: 'LK',
