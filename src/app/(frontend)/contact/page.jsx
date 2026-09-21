@@ -1,10 +1,17 @@
-'use client'
 import Div from "@/app/ui/Div";
 import PageHeading from "@/app/ui/PageHeading";
 import SectionHeading from "@/app/ui/SectionHeading";
 import Spacing from "@/app/ui/Spacing";
 import ContactInfoWidget from "@/app/ui/Widget/ContactInfoWidget";
 import { Icon } from "@iconify/react";
+
+export const metadata = {
+  title: 'Contact SLAHAB',
+  description:
+    'Get in touch with the Sri Lanka Association of Hairdressers and Beauticians. Located in Colombo 3, Sri Lanka.',
+  alternates: { canonical: 'https://slahab.lk/contact' },
+  openGraph: { url: 'https://slahab.lk/contact' },
+}
 
 export default function ContactPage() {
   return (

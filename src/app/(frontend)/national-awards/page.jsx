@@ -1,4 +1,3 @@
-'use client'
 import Image from "next/image";
 import Cta from "@/app/ui/Cta";
 import Div from "@/app/ui/Div";
@@ -6,6 +5,14 @@ import PageHeading from "@/app/ui/PageHeading";
 import Portfolio from "@/app/ui/Portfolio";
 import SectionHeading from "@/app/ui/SectionHeading";
 import Spacing from "@/app/ui/Spacing";
+
+export const metadata = {
+  title: 'SLAHAB National Awards — Celebrating Hair & Beauty Excellence',
+  description:
+    'The most prestigious hairdressing and beauty awards in Sri Lanka. SLAHAB National Awards celebrates outstanding talent and craftsmanship in the industry.',
+  alternates: { canonical: 'https://slahab.lk/national-awards' },
+  openGraph: { url: 'https://slahab.lk/national-awards' },
+}
 
 const introImg = '/images/slahab/awards/award_intro.jpg'
 

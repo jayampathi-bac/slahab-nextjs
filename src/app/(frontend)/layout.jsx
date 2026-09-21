@@ -1,6 +1,7 @@
 import Header from "@/app/ui/Header";
 import CustomCursor from "@/app/ui/CustomCursor";
 import Footer from "@/app/ui/Footer";
+import OrganizationSchema from "@/app/(frontend)/components/OrganizationSchema";
 import "@/app/scss/index.scss";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -17,11 +18,28 @@ const openSans = Open_Sans({
   variable: "--secondary-font",
 });
 
+export const viewport = {
+  themeColor: "#c29b57",
+}
+
 export const metadata = {
-  title: "SLAHAB - Sri Lanka Association of Hairdressers & Beauticians",
+  metadataBase: new URL("https://slahab.lk"),
+  title: {
+    default: "SLAHAB - Sri Lanka Association of Hairdressers & Beauticians",
+    template: "%s | SLAHAB",
+  },
   description:
     "Established in 1996, SLAHAB is the premier national body representing hairdressers, beauticians, and stylists in Sri Lanka, fostering education, global standards, and international competition.",
-  authors: [{ name: "Laralink" }],
+  keywords: [
+    "SLAHAB",
+    "Sri Lanka hairdressers",
+    "Sri Lanka beauticians",
+    "hairdressing association Sri Lanka",
+    "OMC Sri Lanka",
+    "ICD Sri Lanka",
+    "hair beauty Sri Lanka",
+  ],
+  authors: [{ name: "SLAHAB" }],
   icons: {
     icon: [{ url: "/images/slahab/slahab_crest.png", type: "image/png" }],
     shortcut: "/images/slahab/slahab_crest.png",
@@ -29,13 +47,14 @@ export const metadata = {
   },
   openGraph: {
     type: "website",
-    url: "https://slahab.vercel.app/",
+    url: "https://slahab.lk",
+    siteName: "SLAHAB",
     title: "SLAHAB - Sri Lanka Association of Hairdressers & Beauticians",
     description:
       "Established in 1996, SLAHAB is the premier national body representing hairdressers, beauticians, and stylists in Sri Lanka, fostering education, global standards, and international competition.",
     images: [
       {
-        url: "https://slahab.vercel.app/images/slahab/slahab_share_logo.jpg",
+        url: "/images/slahab/slahab_share_logo.jpg",
         width: 500,
         height: 500,
         alt: "SLAHAB Logo",
@@ -47,7 +66,7 @@ export const metadata = {
     title: "SLAHAB - Sri Lanka Association of Hairdressers & Beauticians",
     description:
       "Established in 1996, SLAHAB is the premier national body representing hairdressers, beauticians, and stylists in Sri Lanka, fostering education, global standards, and international competition.",
-    images: ["https://slahab.vercel.app/images/slahab/slahab_share_logo.jpg"],
+    images: ["/images/slahab/slahab_share_logo.jpg"],
   },
 };
 
@@ -58,6 +77,7 @@ export default function FrontendLayout({ children }) {
         className={`${openSans.variable} ${poppins.variable}`}
         suppressHydrationWarning
       >
+        <OrganizationSchema />
         <Header />
         <CustomCursor />
         {children}

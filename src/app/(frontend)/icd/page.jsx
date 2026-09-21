@@ -1,4 +1,3 @@
-'use client'
 import Image from "next/image";
 import Cta from "@/app/ui/Cta";
 import Div from "@/app/ui/Div";
@@ -6,6 +5,14 @@ import PageHeading from "@/app/ui/PageHeading";
 import SectionHeading from "@/app/ui/SectionHeading";
 import Spacing from "@/app/ui/Spacing";
 import TeamSlider from "@/app/ui/Slider/TeamSlider";
+
+export const metadata = {
+  title: 'ICD Sri Lanka — Intercoiffure Mondial Chapter',
+  description:
+    'The Sri Lanka chapter of Intercoiffure Mondial (ICD), the world\'s most prestigious hairdressing organization. Connecting elite Sri Lankan stylists to a global luxury network.',
+  alternates: { canonical: 'https://slahab.lk/icd' },
+  openGraph: { url: 'https://slahab.lk/icd' },
+}
 
 const icdIntroImg = '/images/slahab/icd/icd_intro.jpg';
 const icdLogo = '/images/slahab/icd/icd_logo.png';

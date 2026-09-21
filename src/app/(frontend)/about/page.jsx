@@ -1,4 +1,3 @@
-'use client'
 import Image from "next/image";
 import Cta from "@/app/ui/Cta";
 import Div from "@/app/ui/Div";
@@ -6,6 +5,14 @@ import FunFact from "@/app/ui/FunFact";
 import PageHeading from "@/app/ui/PageHeading";
 import SectionHeading from "@/app/ui/SectionHeading";
 import Spacing from "@/app/ui/Spacing";
+
+export const metadata = {
+  title: 'About SLAHAB — Sri Lanka Association of Hairdressers & Beauticians',
+  description:
+    'Learn about SLAHAB, established in 1996. The premier national body for hairdressers and beauticians in Sri Lanka — education, competitions, and global recognition.',
+  alternates: { canonical: 'https://slahab.lk/about' },
+  openGraph: { url: 'https://slahab.lk/about' },
+}
 
 const pic1 = '/images/slahab/about/pic1.jpg'
 const pic2 = '/images/slahab/about/pic2.jpg'

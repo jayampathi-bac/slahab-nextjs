@@ -106,7 +106,38 @@ export default async function EventDetailPage({ params }) {
     { value: '1996', label: 'Established' },
   ].filter(Boolean)
 
+  const eventSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: event.title,
+    description: event.excerpt || event.title,
+    startDate: event.date,
+    endDate: event.endDate || event.date,
+    eventStatus: isPast
+      ? 'https://schema.org/EventScheduled'
+      : 'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    image: imageUrl,
+    organizer: {
+      '@type': 'Organization',
+      name: 'SLAHAB',
+      url: 'https://slahab.lk',
+    },
+    ...(event.venue && {
+      location: {
+        '@type': 'Place',
+        name: event.venue,
+        address: { '@type': 'PostalAddress', addressCountry: 'LK' },
+      },
+    }),
+  }
+
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchema).replace(/</g, '\\u003c') }}
+      />
     <div className="slahab-event-page" style={{ backgroundColor: '#fff' }}>
       <style>{`
         .slahab-event-page .cs-section_subtitle {
@@ -478,6 +509,7 @@ export default async function EventDetailPage({ params }) {
       {/* Floating conversion CTA — appears once the form scrolls out of view */}
       {!isPast && !event.registrationLink && <FloatingRegisterCta />}
     </div>
+    </>
   )
 }
 

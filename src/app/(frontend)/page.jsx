@@ -19,6 +19,17 @@ import ServiceList from '@/app/ui/ServiceList'
 
 export const dynamic = 'force-dynamic'
 
+export const metadata = {
+  title: 'SLAHAB — Sri Lanka Association of Hairdressers & Beauticians',
+  description:
+    'Official body representing hairdressers and beauticians in Sri Lanka since 1996. National Awards, ICD Sri Lanka chapter, and OMC Hairworld competitions.',
+  alternates: { canonical: 'https://slahab.lk' },
+  openGraph: {
+    url: 'https://slahab.lk',
+    images: [{ url: '/images/slahab/slahab_share_logo.jpg' }],
+  },
+}
+
 const heroSocialLinks = [
   { name: 'Facebook', links: 'https://www.facebook.com/' },
   { name: 'Instagram', links: 'https://www.instagram.com/' },
