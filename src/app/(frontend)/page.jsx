@@ -1,5 +1,6 @@
 import { getPayload } from 'payload'
 import config from '@payload-config'
+import HomepageSchema from '@/app/(frontend)/components/HomepageSchema'
 import EventPopup from '@/app/ui/EventPopup'
 import Cta from '@/app/ui/Cta'
 import Div from '@/app/ui/Div'
@@ -22,9 +23,21 @@ export const dynamic = 'force-dynamic'
 export const metadata = {
   title: 'SLAHAB — Sri Lanka Association of Hairdressers & Beauticians',
   description:
-    'Official body representing hairdressers and beauticians in Sri Lanka since 1996. National Awards, ICD Sri Lanka chapter, and OMC Hairworld competitions.',
+    'SLAHAB is Sri Lanka\'s official hairdressers & beauticians association since 1996. National Awards, ICD Sri Lanka chapter, OMC Hairworld competitors. Colombo, Sri Lanka.',
   alternates: { canonical: '/' },
-  openGraph: { url: '/' },
+  openGraph: {
+    url: '/',
+    type: 'website',
+  },
+  other: {
+    // Geo meta tags — help local & regional search engines
+    'geo.region': 'LK-1',
+    'geo.placename': 'Colombo, Sri Lanka',
+    'geo.position': '6.8869;79.8569',
+    'ICBM': '6.8869, 79.8569',
+    // Content language
+    'content-language': 'en-LK',
+  },
 }
 
 const heroSocialLinks = [
@@ -268,6 +281,7 @@ export default async function Home() {
 
   return (
     <>
+      <HomepageSchema />
       {/* Hero */}
       <Hero
         title="Elevating the Art of <br/>Hair & Beauty in Sri Lanka"
