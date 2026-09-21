@@ -10,8 +10,8 @@ export const metadata = {
   title: 'SLAHAB National Awards — Celebrating Hair & Beauty Excellence',
   description:
     'The most prestigious hairdressing and beauty awards in Sri Lanka. SLAHAB National Awards celebrates outstanding talent and craftsmanship in the industry.',
-  alternates: { canonical: 'https://slahab.lk/national-awards' },
-  openGraph: { url: 'https://slahab.lk/national-awards' },
+  alternates: { canonical: '/national-awards' },
+  openGraph: { url: '/national-awards' },
 }
 
 const introImg = '/images/slahab/awards/award_intro.jpg'

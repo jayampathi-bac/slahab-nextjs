@@ -10,8 +10,8 @@ export const metadata = {
   title: 'About SLAHAB — Sri Lanka Association of Hairdressers & Beauticians',
   description:
     'Learn about SLAHAB, established in 1996. The premier national body for hairdressers and beauticians in Sri Lanka — education, competitions, and global recognition.',
-  alternates: { canonical: 'https://slahab.lk/about' },
-  openGraph: { url: 'https://slahab.lk/about' },
+  alternates: { canonical: '/about' },
+  openGraph: { url: '/about' },
 }
 
 const pic1 = '/images/slahab/about/pic1.jpg'

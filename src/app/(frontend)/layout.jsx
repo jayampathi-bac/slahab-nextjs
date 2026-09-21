@@ -2,6 +2,7 @@ import Header from "@/app/ui/Header";
 import CustomCursor from "@/app/ui/CustomCursor";
 import Footer from "@/app/ui/Footer";
 import OrganizationSchema from "@/app/(frontend)/components/OrganizationSchema";
+import { siteConfig } from "@/lib/siteConfig";
 import "@/app/scss/index.scss";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -23,13 +24,12 @@ export const viewport = {
 }
 
 export const metadata = {
-  metadataBase: new URL("https://slahab.lk"),
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: "SLAHAB - Sri Lanka Association of Hairdressers & Beauticians",
-    template: "%s | SLAHAB",
+    default: `${siteConfig.name} - ${siteConfig.legalName}`,
+    template: `%s | ${siteConfig.name}`,
   },
-  description:
-    "Established in 1996, SLAHAB is the premier national body representing hairdressers, beauticians, and stylists in Sri Lanka, fostering education, global standards, and international competition.",
+  description: siteConfig.description,
   keywords: [
     "SLAHAB",
     "Sri Lanka hairdressers",
@@ -39,34 +39,32 @@ export const metadata = {
     "ICD Sri Lanka",
     "hair beauty Sri Lanka",
   ],
-  authors: [{ name: "SLAHAB" }],
+  authors: [{ name: siteConfig.name }],
   icons: {
-    icon: [{ url: "/images/slahab/slahab_crest.png", type: "image/png" }],
-    shortcut: "/images/slahab/slahab_crest.png",
-    apple: "/images/slahab/slahab_crest.png",
+    icon: [{ url: siteConfig.logo, type: "image/png" }],
+    shortcut: siteConfig.logo,
+    apple: siteConfig.logo,
   },
   openGraph: {
     type: "website",
-    url: "https://slahab.lk",
-    siteName: "SLAHAB",
-    title: "SLAHAB - Sri Lanka Association of Hairdressers & Beauticians",
-    description:
-      "Established in 1996, SLAHAB is the premier national body representing hairdressers, beauticians, and stylists in Sri Lanka, fostering education, global standards, and international competition.",
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title: `${siteConfig.name} - ${siteConfig.legalName}`,
+    description: siteConfig.description,
     images: [
       {
-        url: "/images/slahab/slahab_share_logo.jpg",
+        url: siteConfig.ogImage,
         width: 500,
         height: 500,
-        alt: "SLAHAB Logo",
+        alt: `${siteConfig.name} Logo`,
       },
     ],
   },
   twitter: {
     card: "summary",
-    title: "SLAHAB - Sri Lanka Association of Hairdressers & Beauticians",
-    description:
-      "Established in 1996, SLAHAB is the premier national body representing hairdressers, beauticians, and stylists in Sri Lanka, fostering education, global standards, and international competition.",
-    images: ["/images/slahab/slahab_share_logo.jpg"],
+    title: `${siteConfig.name} - ${siteConfig.legalName}`,
+    description: siteConfig.description,
+    images: [siteConfig.ogImage],
   },
 };
 

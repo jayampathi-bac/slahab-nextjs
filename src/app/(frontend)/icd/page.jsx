@@ -10,8 +10,8 @@ export const metadata = {
   title: 'ICD Sri Lanka — Intercoiffure Mondial Chapter',
   description:
     'The Sri Lanka chapter of Intercoiffure Mondial (ICD), the world\'s most prestigious hairdressing organization. Connecting elite Sri Lankan stylists to a global luxury network.',
-  alternates: { canonical: 'https://slahab.lk/icd' },
-  openGraph: { url: 'https://slahab.lk/icd' },
+  alternates: { canonical: '/icd' },
+  openGraph: { url: '/icd' },
 }
 
 const icdIntroImg = '/images/slahab/icd/icd_intro.jpg';

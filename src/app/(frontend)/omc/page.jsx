@@ -11,8 +11,8 @@ export const metadata = {
   title: 'OMC Hairworld — Sri Lanka at the World Championships',
   description:
     'SLAHAB is the official OMC representative in Sri Lanka. Follow our journey to the OMC Hairworld Championships and Asia Cup — competing on the global stage.',
-  alternates: { canonical: 'https://slahab.lk/omc' },
-  openGraph: { url: 'https://slahab.lk/omc' },
+  alternates: { canonical: '/omc' },
+  openGraph: { url: '/omc' },
 }
 
 const omcIntroImg = '/images/slahab/omc/omc_intro.jpg';

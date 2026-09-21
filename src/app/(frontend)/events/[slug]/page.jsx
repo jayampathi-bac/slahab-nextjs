@@ -35,6 +35,8 @@ export async function generateMetadata({ params }) {
   return {
     title: `${event.title} | SLAHAB Events`,
     description: event.excerpt || `Join us for ${event.title}`,
+    alternates: { canonical: `/events/${slug}` },
+    openGraph: { url: `/events/${slug}` },
   }
 }
 

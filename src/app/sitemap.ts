@@ -1,41 +1,35 @@
 import { MetadataRoute } from 'next'
-import { getPayload } from 'payload'
-import config from '@payload-config'
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const payload = await getPayload({ config })
-  const { docs: events } = await payload.find({
-    collection: 'events',
-    limit: 100,
-    where: {
-      or: [
-        { status: { equals: 'upcoming' } },
-        { status: { equals: 'past' } },
-      ],
-    },
-  })
+const BASE = process.env.NEXT_PUBLIC_SITE_URL || 'https://slahab.lk'
 
-  const staticPages = [
-    '',
-    '/about',
-    '/contact',
-    '/events',
-    '/icd',
-    '/national-awards',
-    '/omc',
-  ]
-  const base = 'https://slahab.lk'
+// Static sitemap — no DB dependency, generated at build time.
+// When a new event is added, add its slug here and redeploy.
+const staticPages = [
+  { path: '',                priority: 1.0 },
+  { path: '/about',         priority: 0.8 },
+  { path: '/contact',       priority: 0.8 },
+  { path: '/events',        priority: 0.9 },
+  { path: '/icd',           priority: 0.8 },
+  { path: '/national-awards', priority: 0.8 },
+  { path: '/omc',           priority: 0.8 },
+]
 
+const eventSlugs = [
+  'beauty-wellness-miracles-of-asia-2026',
+  // add new event slugs here when created
+]
+
+export default function sitemap(): MetadataRoute.Sitemap {
   return [
-    ...staticPages.map((p) => ({
-      url: `${base}${p}`,
+    ...staticPages.map(({ path, priority }) => ({
+      url: `${BASE}${path}`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
-      priority: p === '' ? 1.0 : 0.8,
+      priority,
     })),
-    ...events.map((e) => ({
-      url: `${base}/events/${e.slug}`,
-      lastModified: new Date(e.updatedAt),
+    ...eventSlugs.map((slug) => ({
+      url: `${BASE}/events/${slug}`,
+      lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     })),

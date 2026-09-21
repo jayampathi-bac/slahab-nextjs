@@ -9,8 +9,8 @@ export const metadata = {
   title: 'Contact SLAHAB',
   description:
     'Get in touch with the Sri Lanka Association of Hairdressers and Beauticians. Located in Colombo 3, Sri Lanka.',
-  alternates: { canonical: 'https://slahab.lk/contact' },
-  openGraph: { url: 'https://slahab.lk/contact' },
+  alternates: { canonical: '/contact' },
+  openGraph: { url: '/contact' },
 }
 
 export default function ContactPage() {
