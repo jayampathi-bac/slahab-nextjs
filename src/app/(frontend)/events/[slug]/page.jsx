@@ -10,6 +10,7 @@ import RegisterForm from './RegisterForm'
 import FloatingRegisterCta from './FloatingRegisterCta'
 import GalleryGrid from './GalleryGrid'
 import Icon from '@/app/ui/Icon'
+import { siteConfig } from '@/lib/siteConfig'
 
 export const dynamic = 'force-dynamic'
 
@@ -116,14 +117,14 @@ export default async function EventDetailPage({ params }) {
     startDate: event.date,
     endDate: event.endDate || event.date,
     eventStatus: isPast
-      ? 'https://schema.org/EventScheduled'
+      ? 'https://schema.org/EventEnded'
       : 'https://schema.org/EventScheduled',
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     image: imageUrl,
     organizer: {
       '@type': 'Organization',
       name: 'SLAHAB',
-      url: 'https://slahab.lk',
+      url: siteConfig.url,
     },
     ...(event.venue && {
       location: {
@@ -134,11 +135,25 @@ export default async function EventDetailPage({ params }) {
     }),
   }
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.url },
+      { '@type': 'ListItem', position: 2, name: 'Events', item: `${siteConfig.url}/events` },
+      { '@type': 'ListItem', position: 3, name: event.title, item: `${siteConfig.url}/events/${slug}` },
+    ],
+  }
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchema).replace(/</g, '\\u003c') }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema).replace(/</g, '\\u003c') }}
       />
     <div className="slahab-event-page" style={{ backgroundColor: '#fff' }}>
       <style>{`

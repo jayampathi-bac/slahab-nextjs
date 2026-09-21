@@ -8,11 +8,16 @@ import Spacing from '@/app/ui/Spacing'
 import PostSlider from '@/app/ui/Slider/PostSlider'
 import Image from 'next/image'
 import Icon from '@/app/ui/Icon'
+import { siteConfig } from '@/lib/siteConfig'
 
 export const dynamic = 'force-dynamic'
 
 export const metadata = {
-  title: 'Events & Programs | SLAHAB',
+  title: 'SLAHAB Events & Programs — Workshops, Awards & International Competitions',
+  description:
+    "Browse upcoming and past events by SLAHAB — Sri Lanka's official hair & beauty association. Workshops, National Awards, ICD World Congress, OMC Hairworld and more.",
+  alternates: { canonical: '/events' },
+  openGraph: { url: '/events' },
 }
 
 const eventHighlightsData = [
@@ -83,8 +88,28 @@ export default async function EventsPage() {
     depth: 1,
   })
 
+  const allEvents = [...upcomingEvents, ...pastEvents]
+
+  const itemListSchema = allEvents.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'SLAHAB Events & Programs',
+    itemListElement: allEvents.map((ev, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: ev.title,
+      url: `${siteConfig.url}/events/${ev.slug}`,
+    })),
+  } : null
+
   return (
     <>
+      {itemListSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema).replace(/</g, '\\u003c') }}
+        />
+      )}
       <style>{`
         .editorial-event-card {
           border-color: #eaeaea;

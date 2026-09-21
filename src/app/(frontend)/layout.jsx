@@ -3,6 +3,7 @@ import CustomCursor from "@/app/ui/CustomCursor";
 import Footer from "@/app/ui/Footer";
 import OrganizationSchema from "@/app/(frontend)/components/OrganizationSchema";
 import { siteConfig } from "@/lib/siteConfig";
+import Script from "next/script";
 import "@/app/scss/index.scss";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -76,6 +77,20 @@ export default function FrontendLayout({ children }) {
         suppressHydrationWarning
       >
         <OrganizationSchema />
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga-init" strategy="afterInteractive">{`
+              window.dataLayer=window.dataLayer||[];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js',new Date());
+              gtag('config','${process.env.NEXT_PUBLIC_GA_ID}');
+            `}</Script>
+          </>
+        )}
         <Header />
         <CustomCursor />
         {children}

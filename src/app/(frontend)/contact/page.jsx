@@ -4,6 +4,7 @@ import SectionHeading from "@/app/ui/SectionHeading";
 import Spacing from "@/app/ui/Spacing";
 import ContactInfoWidget from "@/app/ui/Widget/ContactInfoWidget";
 import { Icon } from "@iconify/react";
+import ContactPageSchema from "@/app/(frontend)/components/ContactPageSchema";
 
 export const metadata = {
   title: 'Contact SLAHAB',
@@ -16,6 +17,7 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <>
+      <ContactPageSchema />
       <PageHeading
         title="Contact Us"
         bgSrc="/images/contact_hero_bg.jpeg"
