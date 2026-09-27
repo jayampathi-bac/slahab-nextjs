@@ -42,8 +42,7 @@ export const metadata = {
 }
 
 const heroSocialLinks = [
-  { name: 'Facebook', links: 'https://www.facebook.com/' },
-  { name: 'Instagram', links: 'https://www.instagram.com/' },
+  { name: 'Facebook', links: 'https://www.facebook.com/slahab.srilanka/' },
 ]
 
 const funfactData = [
