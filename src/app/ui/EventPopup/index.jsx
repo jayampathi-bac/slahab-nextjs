@@ -86,10 +86,11 @@ export default function EventPopup({ events }) {
           .ep-inner { flex-direction: column !important; min-height: auto !important; }
           .ep-image-col {
             width: 100% !important;
-            height: 160px !important;
-            min-height: 160px !important;
+            height: min(56vw, 220px) !important;
+            min-height: min(56vw, 220px) !important;
             flex-shrink: 0 !important;
           }
+          .ep-image-col img { object-position: top center !important; }
           .ep-content-col { width: 100% !important; padding: 18px !important; }
           .ep-title { font-size: 18px !important; margin-bottom: 16px !important; }
           .ep-details-list { gap: 10px !important; margin-bottom: 16px !important; }
